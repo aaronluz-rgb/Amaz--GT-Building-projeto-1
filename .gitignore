@@ -2,7 +2,12 @@ node_modules/
 amaz-video/node_modules/
 amaz-video/snapshots/
 amaz-video/dist/
+amaz-video/work-*/
 *.log
+
+# Rendered video outputs — regenerated via `npx hyperframes render`,
+# not committed (large binaries, superseded by every re-render).
+amaz-video/*.mp4
 
 # HyperFrames/Claude skill tooling — reinstallable via
 # `npx skills add heygen-com/hyperframes` / `npx hyperframes skills update`,
