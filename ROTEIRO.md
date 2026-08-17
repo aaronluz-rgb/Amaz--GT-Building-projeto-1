@@ -25,15 +25,13 @@ Alternativa em close: `torre_fachada_close_ALT.jpg` (pág. 18)
 **Animação:** Fade in/out, leve zoom; o texto já embutido dispensa overlay adicional (apenas dar destaque/realce com leve iluminação ou sombra sutil se necessário)
 **Narração:** "O Amáz compensa 100% do carbono gerado em sua obra através de um projeto real de preservação na Amazônia."
 
-## Cena 4 — Plantas / Coberturas Duplex (0:17–0:28) — CENA PRINCIPAL
-**Imagens (par superior/inferior da Final 1, 416 m²):**
-- `media/04_plantas_duplex/final1_416m2_andar_SUPERIOR_PRINCIPAL.jpg` (pág. 57 — sala, cozinha, piscina/terraço)
-- `media/04_plantas_duplex/final1_416m2_andar_INFERIOR_PRINCIPAL.jpg` (pág. 58 — quartos)
-Alternativas: Final 2 (340 m², pág. 59–60) e Final 3 (349 m², pág. 63–64) para variação, caso o vídeo precise de mais cortes.
-**Animação:** Câmera "caminha" pela planta — zoom guiado cômodo a cômodo (sala → cozinha → quarto → terraço/piscina) trocando entre as duas plantas (superior/inferior) conforme a narração cita cada ambiente
-**Narração:** "Duas torres, quarenta e cinco unidades, e coberturas duplex de até quatrocentos e dezesseis metros quadrados — com piscina privativa suspensa sobre a cidade."
+> **Atualização:** a cena das plantas da cobertura duplex foi **removida** a pedido do
+> cliente (as plantas ficavam com enquadramento "estourado" ao cortar a peça
+> landscape para 9:16). O vídeo agora tem 37s, com as cenas seguintes
+> renumeradas e o tempo redistribuído. As imagens das plantas continuam
+> disponíveis em `media/04_plantas_duplex/` caso a cena volte a ser usada.
 
-## Cena 5 — Amenidades (0:28–0:35)
+## Cena 4 — Amenidades (0:17–0:24)
 **Imagens (corte rápido entre as 4):**
 - `media/05_amenidades/hall_manoa_PRINCIPAL.jpg` (pág. 25)
 - `media/05_amenidades/hall_samauma_PRINCIPAL.jpg` (pág. 27)
@@ -42,13 +40,13 @@ Alternativas: Final 2 (340 m², pág. 59–60) e Final 3 (349 m², pág. 63–64
 **Animação:** Corte rápido entre as 4 fotos, cada uma com leve zoom
 **Narração:** "Espaços pensados por uma equipe premiada — arquitetura, paisagismo e interiores em perfeita harmonia com a natureza."
 
-## Cena 6 — Clímax: pôr do sol na piscina da cobertura (0:35–0:43)
+## Cena 5 — Clímax: pôr do sol na piscina da cobertura (0:24–0:32)
 **Imagem:** `media/06_climax_piscina/piscina_cobertura_por_do_sol_PRINCIPAL.jpg` (pág. 61 — piscina da cobertura ao entardecer, luz dourada)
 Alternativa: `terraco_cobertura_por_do_sol_ALT.jpg` (pág. 62)
 **Animação:** Zoom lento, realce sutil na luz dourada
 **Narração:** (silêncio ou música, sem fala — deixar a imagem respirar)
 
-## Cena 7 — Encerramento (0:43–0:48)
+## Cena 6 — Encerramento (0:32–0:37)
 **Imagem:** `media/07_encerramento/logo_GT_Building_amazonia_PRINCIPAL.jpg` (última página do caderno — logo GT Building + "think tomorrow. think climability.")
 Alternativas: `amaz_logo_capa_ALT.jpg` (capa, logo AMÁZ) e `fachada_com_assinatura_marca_ALT.jpg` (pág. 6 — já traz a assinatura "AMÁZ. Seu futuro lar, naturalmente perfeito." impressa na peça)
 **Animação:** Fade to black
@@ -59,8 +57,13 @@ Alternativas: `amaz_logo_capa_ALT.jpg` (capa, logo AMÁZ) e `fachada_com_assinat
 ## Créditos finais (opcional)
 Tela final, texto estático 2s: "Vídeo produzido com IA — Morphix & HyperFrames [seu nome/marca aqui]"
 
-## Formato de saída
-Vertical 9:16 ou 4:5 (Instagram/Reels).
+## Formato de saída e enquadramento
+Vertical 9:16 (1080x1920), padrão Reels/Stories. Como as páginas do caderno são
+peças landscape (spreads largos), cada cena usa o padrão "blurred background +
+contain": uma cópia desfocada/escurecida da própria imagem preenche o quadro
+vertical inteiro, e a imagem original aparece nítida e **inteira** ao centro
+(sem cortar nada, sem "estourar" as bordas). Esse é o tratamento padrão de
+quem posta conteúdo landscape em Reels/Stories.
 
 ## Mapa de páginas do PDF → páginas impressas no caderno
 O PDF fornecido (`source_pdf/amaz_caderno_oficial.pdf`, 67 páginas) numera a página impressa como (página do PDF − 1). Ex.: página impressa "11" = página 12 do PDF. Todas as extrações acima já usam esse mapeamento conferido visualmente.
