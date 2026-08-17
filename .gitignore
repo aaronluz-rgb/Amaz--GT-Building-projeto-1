@@ -1,0 +1,12 @@
+node_modules/
+amaz-video/node_modules/
+amaz-video/snapshots/
+amaz-video/dist/
+*.log
+
+# HyperFrames/Claude skill tooling — reinstallable via
+# `npx skills add heygen-com/hyperframes` / `npx hyperframes skills update`,
+# not project content.
+.agents/
+.claude/
+skills-lock.json

@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>AMÁZ — GT Building</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+
+      /* Every scene is a hard-cut, full-bleed, opaque frame. */
+      .scene {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: #000;
+      }
+
+      /* The virtual-camera wrapper: all camera motion (pan/zoom) lives here. */
+      .world {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 50%;
+        will-change: transform;
+      }
+      .world img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Caption track — sits above the image clips on a higher track-index. */
+      .caption-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .caption-scrim {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 46%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 100%);
+      }
+      .caption-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 140px;
+        padding: 0 72px;
+        color: #f6f4ee;
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 1.32;
+        letter-spacing: -0.01em;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+      }
+
+      /* Small kicker label (top-left) — scene identity, matches the deck's tracked-caps house style.
+         Solid dark pill so it stays legible over both dark photos and the light floor-plan pages. */
+      .kicker {
+        position: absolute;
+        z-index: 2;
+        top: 96px;
+        left: 72px;
+        padding: 14px 26px;
+        background: rgba(15, 20, 16, 0.82);
+        border-radius: 999px;
+        color: #f6f4ee;
+        font-weight: 700;
+        font-size: 22px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      /* Cena 3 — the source page's "4.500 toneladas CO2" headline is sized for a wide
+         landscape spread and cannot survive a 9:16 crop legibly, so we restate the
+         number in our own type, positioned clear of the bottom narration caption. */
+      .stat-callout {
+        position: absolute;
+        z-index: 2;
+        left: 72px;
+        right: 72px;
+        top: 1220px;
+        color: #f6f4ee;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+      }
+      .stat-callout .stat-number {
+        font-size: 88px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .stat-callout .stat-label {
+        margin-top: 14px;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      /* Cena 7 — end card */
+      .endcard-lockup {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 220px;
+        text-align: center;
+        color: #f6f4ee;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+      }
+      .endcard-lockup .brand {
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .endcard-lockup .tagline {
+        margin-top: 18px;
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      /* Full-frame fade-to-black for the final beat. */
+      #fade-to-black {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="48" data-width="1080" data-height="1920">
+      <!-- ============================================================ -->
+      <!-- CENA 1 — Abertura (0–6s) — fachada, duas torres, pôr do sol   -->
+      <!-- ============================================================ -->
+      <section id="scene-1-img" class="scene clip" data-start="0" data-duration="6" data-track-index="1">
+        <div class="world" id="world-c1">
+          <img src="assets/cena1_fachada.jpg" alt="Torres Manoa e Samaúma ao pôr do sol" />
+        </div>
+      </section>
+      <section id="scene-1-caption" class="scene clip" data-start="0" data-duration="6" data-track-index="2" style="background: transparent">
+        <div class="caption-layer">
+          <div class="caption-scrim"></div>
+          <p class="caption-text">
+            Existe uma floresta dentro de cada um de nós. E é dela que nasce o Amáz — o novo empreendimento da GT
+            Building, em Curitiba.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CENA 2 — Localização (6–11s) — mapa                           -->
+      <!-- ============================================================ -->
+      <section id="scene-2-img" class="scene clip" data-start="6" data-duration="5" data-track-index="1">
+        <div class="world" id="world-c2">
+          <img src="assets/cena2_mapa.jpg" alt="Mapa de localização — Champagnat, Curitiba" />
+        </div>
+      </section>
+      <section id="scene-2-caption" class="scene clip" data-start="6" data-duration="5" data-track-index="2" style="background: transparent">
+        <div class="caption-layer">
+          <div class="caption-scrim"></div>
+          <p class="caption-text">
+            Localizado no Champagnat, um dos endereços mais valorizados da cidade, a poucos passos do Parque Barigui
+            e do Pátio Batel.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CENA 3 — Sustentabilidade (11–17s) — Amazônia + 4.500t CO2    -->
+      <!-- ============================================================ -->
+      <section id="scene-3-img" class="scene clip" data-start="11" data-duration="6" data-track-index="1">
+        <div class="world" id="world-c3">
+          <img src="assets/cena3_amazonia.jpg" alt="Foto aérea da Amazônia — Projeto REDD+ Manoa" />
+        </div>
+        <!-- The source page's own headline text ("4.500 toneladas CO2", sized for a wide
+             spread) drifts through this crop illegibly at 9:16; dim it so it reads as
+             atmospheric texture instead of competing with our .stat-callout. -->
+        <div style="position: absolute; inset: 0; background: rgba(4, 12, 8, 0.62)"></div>
+      </section>
+      <section id="scene-3-caption" class="scene clip" data-start="11" data-duration="6" data-track-index="2" style="background: transparent">
+        <div class="stat-callout">
+          <div class="stat-number">4.500 t</div>
+          <div class="stat-label">de CO2 compensadas via Projeto REDD+ Manoa</div>
+        </div>
+        <div class="caption-layer">
+          <div class="caption-scrim"></div>
+          <p class="caption-text">
+            O Amáz compensa 100% do carbono gerado em sua obra através de um projeto real de preservação na
+            Amazônia.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CENA 4 — Plantas / cobertura duplex (17–28s) — CENA PRINCIPAL -->
+      <!-- Duas plantas (andar superior / andar inferior), câmera        -->
+      <!-- caminha cômodo a cômodo dentro de cada uma.                   -->
+      <!-- ============================================================ -->
+      <section id="scene-4a-img" class="scene clip" data-start="17" data-duration="5.5" data-track-index="1">
+        <div class="kicker">Cobertura Duplex · 416 m² · Andar Superior</div>
+        <div class="world" id="world-c4a">
+          <img src="assets/cena4_planta_superior.jpg" alt="Planta — cobertura duplex, andar superior" />
+        </div>
+      </section>
+      <section id="scene-4b-img" class="scene clip" data-start="22.5" data-duration="5.5" data-track-index="1">
+        <div class="kicker">Cobertura Duplex · 416 m² · Andar Inferior</div>
+        <div class="world" id="world-c4b">
+          <img src="assets/cena4_planta_inferior.jpg" alt="Planta — cobertura duplex, andar inferior" />
+        </div>
+      </section>
+      <section id="scene-4-caption" class="scene clip" data-start="17" data-duration="11" data-track-index="2" style="background: transparent">
+        <div class="caption-layer">
+          <div class="caption-scrim"></div>
+          <p class="caption-text">
+            Duas torres, quarenta e cinco unidades, e coberturas duplex de até quatrocentos e dezesseis metros
+            quadrados — com piscina privativa suspensa sobre a cidade.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CENA 5 — Amenidades (28–35s) — 4 fotos em corte rápido        -->
+      <!-- ============================================================ -->
+      <section id="scene-5a-img" class="scene clip" data-start="28" data-duration="1.75" data-track-index="1">
+        <div class="kicker">Hall Manoa</div>
+        <div class="world" id="world-c5a">
+          <img src="assets/cena5_hall_manoa.jpg" alt="Hall Torre Manoa" />
+        </div>
+      </section>
+      <section id="scene-5b-img" class="scene clip" data-start="29.75" data-duration="1.75" data-track-index="1">
+        <div class="kicker">Hall Samaúma</div>
+        <div class="world" id="world-c5b">
+          <img src="assets/cena5_hall_samauma.jpg" alt="Hall Torre Samaúma" />
+        </div>
+      </section>
+      <section id="scene-5c-img" class="scene clip" data-start="31.5" data-duration="1.75" data-track-index="1">
+        <div class="kicker">Piscina Coberta</div>
+        <div class="world" id="world-c5c">
+          <img src="assets/cena5_piscina_coberta.jpg" alt="Piscina coberta" />
+        </div>
+      </section>
+      <section id="scene-5d-img" class="scene clip" data-start="33.25" data-duration="1.75" data-track-index="1">
+        <div class="kicker">Wine Bar</div>
+        <div class="world" id="world-c5d">
+          <img src="assets/cena5_wine_bar.jpg" alt="Wine bar" />
+        </div>
+      </section>
+      <section id="scene-5-caption" class="scene clip" data-start="28" data-duration="7" data-track-index="2" style="background: transparent">
+        <div class="caption-layer">
+          <div class="caption-scrim"></div>
+          <p class="caption-text">
+            Espaços pensados por uma equipe premiada — arquitetura, paisagismo e interiores em perfeita harmonia com
+            a natureza.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CENA 6 — Clímax (35–43s) — piscina da cobertura, pôr do sol   -->
+      <!-- Sem narração: a imagem respira.                               -->
+      <!-- ============================================================ -->
+      <section id="scene-6-img" class="scene clip" data-start="35" data-duration="8" data-track-index="1">
+        <div class="world" id="world-c6">
+          <img src="assets/cena6_piscina_sunset.jpg" alt="Piscina da cobertura ao pôr do sol" />
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- CENA 7 — Encerramento (43–48s) — logo GT Building             -->
+      <!-- ============================================================ -->
+      <section id="scene-7-img" class="scene clip" data-start="43" data-duration="5" data-track-index="1">
+        <div class="world" id="world-c7">
+          <img src="assets/cena7_logo.jpg" alt="Logo GT Building" />
+        </div>
+        <!-- The source page carries fine-print legal disclaimer text at its very top
+             and bottom edges; vignette both so the endcard lockup sits on a clean
+             backdrop instead of competing with it. -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background:
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 8%),
+              linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 3%, rgba(0, 0, 0, 0) 24%);
+          "
+        ></div>
+        <div class="endcard-lockup">
+          <div class="brand">GT Building</div>
+          <div class="tagline">Amáz. Seu futuro lar, naturalmente perfeito.</div>
+        </div>
+      </section>
+
+      <!-- Full-frame fade to black, sits above everything on the top track. -->
+      <div id="fade-to-black" class="clip" data-start="43" data-duration="5" data-track-index="9"></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- Virtual-camera helper (viewport-change pattern) ----
+      // cam = { scale, x, y }; world transform = translate(x,y) scale(S)
+      // T = -offset * S maps a target's neutral-frame offset (px, from
+      // viewport center) to screen center at the given scale.
+      function makeCam(id) {
+        const el = document.getElementById(id);
+        const cam = { scale: 1, x: 0, y: 0 };
+        function apply() {
+          el.style.transform = `translate(${cam.x}px, ${cam.y}px) scale(${cam.scale})`;
+        }
+        apply();
+        return { cam, apply };
+      }
+
+      const c1 = makeCam("world-c1");
+      const c2 = makeCam("world-c2");
+      const c3 = makeCam("world-c3");
+      const c4a = makeCam("world-c4a");
+      const c4b = makeCam("world-c4b");
+      const c5a = makeCam("world-c5a");
+      const c5b = makeCam("world-c5b");
+      const c5c = makeCam("world-c5c");
+      const c5d = makeCam("world-c5d");
+      const c6 = makeCam("world-c6");
+      const c7 = makeCam("world-c7");
+
+      // ---- Cena 1 (0–6s) — slow push-in on the towers, 1.0 -> 1.12 ----
+      tl.to(c1.cam, { scale: 1.12, x: -18, duration: 6, ease: "sine.inOut", onUpdate: c1.apply }, 0);
+
+      // ---- Cena 2 (6–11s) — lateral pan across the map, subtle zoom ----
+      tl.fromTo(
+        c2.cam,
+        { scale: 1.08, x: 60, y: 10 },
+        { scale: 1.16, x: -60, y: -10, duration: 5, ease: "sine.inOut", onUpdate: c2.apply },
+        6,
+      );
+
+      // ---- Cena 3 (11–17s) — gentle drift over the dimmed canopy; the source page's
+      // own "4.500 toneladas" headline is dimmed to texture (see scrim above), our
+      // .stat-callout is the legible restatement of the number. ----
+      tl.fromTo(
+        c3.cam,
+        { scale: 1.0, y: 20 },
+        { scale: 1.12, y: -16, duration: 6, ease: "sine.inOut", onUpdate: c3.apply },
+        11,
+      );
+
+      // ---- Cena 4a (17–22.5s) — andar superior: sala -> cozinha -> piscina/terraço ----
+      // Neutral frame shows the whole plan; walk left(sala/cozinha) -> up-right(piscina/terraço).
+      tl.set(c4a.cam, { scale: 1.28, x: 40, y: 60, onUpdate: c4a.apply }, 17);
+      tl.to(c4a.cam, { scale: 1.55, x: 90, y: 140, duration: 2.1, ease: "power2.inOut", onUpdate: c4a.apply }, 17.3);
+      tl.to(c4a.cam, { scale: 1.45, x: -60, y: -160, duration: 2.3, ease: "power2.inOut", onUpdate: c4a.apply }, 19.6);
+
+      // ---- Cena 4b (22.5–28s) — andar inferior: quartos ----
+      tl.set(c4b.cam, { scale: 1.3, x: 70, y: -120, onUpdate: c4b.apply }, 22.5);
+      tl.to(c4b.cam, { scale: 1.5, x: -40, y: 40, duration: 2.4, ease: "power2.inOut", onUpdate: c4b.apply }, 22.8);
+      tl.to(c4b.cam, { scale: 1.4, x: 30, y: 200, duration: 2.3, ease: "power2.inOut", onUpdate: c4b.apply }, 25.4);
+
+      // ---- Cena 5 (28–35s) — 4 quick cuts, each with a light push-in ----
+      tl.fromTo(c5a.cam, { scale: 1.04 }, { scale: 1.14, duration: 1.75, ease: "sine.out", onUpdate: c5a.apply }, 28);
+      tl.fromTo(
+        c5b.cam,
+        { scale: 1.04, x: 10 },
+        { scale: 1.15, x: -10, duration: 1.75, ease: "sine.out", onUpdate: c5b.apply },
+        29.75,
+      );
+      tl.fromTo(c5c.cam, { scale: 1.04 }, { scale: 1.14, duration: 1.75, ease: "sine.out", onUpdate: c5c.apply }, 31.5);
+      tl.fromTo(
+        c5d.cam,
+        { scale: 1.04, x: -10 },
+        { scale: 1.15, x: 10, duration: 1.75, ease: "sine.out", onUpdate: c5d.apply },
+        33.25,
+      );
+
+      // ---- Cena 6 (35–43s) — long, slow breathing zoom on the golden light ----
+      tl.fromTo(
+        c6.cam,
+        { scale: 1.0, x: 0, y: 20 },
+        { scale: 1.16, x: -10, y: -30, duration: 8, ease: "sine.inOut", onUpdate: c6.apply },
+        35,
+      );
+
+      // ---- Cena 7 (43–48s) — settle, then fade to black. y-shift keeps the source
+      // page's bottom-edge fine-print legal disclaimer band out of frame. ----
+      tl.fromTo(
+        c7.cam,
+        { scale: 1.1, y: -30 },
+        { scale: 1.2, y: -60, duration: 5, ease: "sine.out", onUpdate: c7.apply },
+        43,
+      );
+      tl.to("#fade-to-black", { opacity: 1, duration: 1.1, ease: "power1.in" }, 46.9);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
