@@ -34,12 +34,16 @@ definido na Seção 2 — e usar essa ficha como **imagem de referência fixa**
 em todas as 9 cenas (técnica image-to-video / character-lock), em vez de
 gerar o rosto do zero em cada cena.
 
-Para isso eu preciso gerar essa imagem pela ferramenta de imagem (Morphix):
-abri a janela de upload na conversa — **arraste a mesma foto ali** para eu
-poder usá-la como referência de edição e gerar a ficha de personagem
-estilizada (careca, old school, tênis Vans etc.). Sem esse passo, qualquer
-gerador de vídeo por IA (Sora, Veo, Kling, Runway etc.) vai "reinventar" o
-rosto a cada nova cena — exatamente o problema que você quer evitar.
+**Sem usar Morphix** (sem créditos disponíveis no momento): a ficha textual
+da Seção 2 já está pronta e é suficiente para você mesmo gerar essa imagem
+de referência em qualquer ferramenta com plano gratuito/créditos próprios
+(ex.: Gemini/Nano Banana, ChatGPT/Sora, Grok Imagine, Kling, Runway) —
+basta anexar a mesma foto que você me enviou + colar o texto da Seção 2
+como prompt de edição, pedindo as 3 poses (frente, perfil, 3/4). Depois é
+só reaproveitar essa imagem gerada como referência fixa nas 9 cenas. Sem
+esse passo, qualquer gerador de vídeo por IA (Sora, Veo, Kling, Runway
+etc.) vai "reinventar" o rosto a cada nova cena — exatamente o problema que
+você quer evitar.
 
 ---
 
@@ -248,8 +252,9 @@ com plano aberto da moto se afastando na estrada.
 ## 6. Checklist antes de gerar o vídeo
 
 - [x] Foto de referência do personagem recebida (Seção 1)
-- [ ] Arrastar a mesma foto na janela de upload do Morphix para gerar a
-      ficha de personagem estilizada (character sheet)
+- [ ] Gerar a imagem da ficha de personagem estilizada (character sheet)
+      em uma ferramenta de imagem por IA à sua escolha (Morphix está fora
+      por falta de créditos) — anexar a foto + colar o texto da Seção 2
 - [x] Proporção final: **9:16** (confirmado)
 - [x] Cor de pintura final da moto: **preta fosca com detalhes em vermelho
       e dourado** (confirmado)
