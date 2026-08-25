@@ -129,10 +129,13 @@ montagem.
 
 ## 4. Especificações técnicas do vídeo
 
-- **Formato:** recomendo **16:9 cinematográfico** (documentário de oficina/
-  Route 66) — se o destino final for Reels/Stories/TikTok, use **9:16** e eu
-  adapto os enquadramentos. *(Não especificado no pedido original — confirme
-  qual você quer.)*
+- **Formato:** **9:16 vertical (1080x1920)**, padrão Reels/Stories/TikTok
+  (confirmado). Todas as 9 cenas devem ser enquadradas nativamente em
+  vertical — não é um corte de um vídeo 16:9: composição pensada para o
+  quadro alto desde o storyboard (oficina, bancadas e a moto centralizados
+  verticalmente, closes de mãos/peças aproveitando a altura do quadro, e na
+  Cena 9 a estrada em plano baixo com a moto ocupando o centro do frame ao
+  invés de um plano panorâmico largo que ficaria cortado nas laterais).
 - **Duração sugerida por cena:** 6–10s cada, total aproximado de 60–90s
   (9 cenas), estilo timelapse com cortes secos ou fusão curta entre cenas.
 - **Estilo visual:** fotografia old school, grão de filme sutil (film
@@ -237,7 +240,7 @@ com plano aberto da moto se afastando na estrada.
 ## 6. Checklist antes de gerar o vídeo
 
 - [ ] Anexar foto de referência do personagem (Seção 1)
-- [ ] Confirmar proporção final: 16:9 ou 9:16
+- [x] Proporção final: **9:16** (confirmado)
 - [ ] Confirmar cor de pintura final da moto (Seção 3) — sugestão: preto
       fosco com friso vermelho
 - [ ] Confirmar se haverá personagem coadjuvante (ajudante) ou só o
