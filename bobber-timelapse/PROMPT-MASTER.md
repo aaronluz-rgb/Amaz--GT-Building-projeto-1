@@ -308,8 +308,28 @@ gratuita real hoje:
 | **Pika Labs** (pika.art) | Créditos grátis limitados | Boa para cenas de ação/movimento de câmera |
 | **Hailuo/MiniMax** (hailuoai.video) | Créditos diários grátis | Alternativa quando as outras esgotarem os créditos do dia |
 | **CapCut (recursos de IA)** | Grátis com marca d'água/limites | Mais fraco em fotorrealismo, mas útil para testar enquadramento 9:16 rapidamente |
+| **Google Flow** (labs.google/flow) | Teste gratuito por tempo/uso limitado — depois exige Google AI Pro/Ultra (pago) | Ver observação especial abaixo — é a ferramenta mais alinhada à sua exigência nº 1 |
 
-**Como usar o documento em qualquer uma delas:**
+### Nota especial — Google Flow e o recurso "Ingredients to Video"
+
+O Google Flow (Veo, via labs.google/flow) tem um recurso chamado
+**"Ingredients to Video"**: você sobe até 3 imagens de referência (ex.: uma
+imagem do personagem principal, uma do ajudante, uma da moto) e o modelo
+mantém a aparência delas fixa em todas as cenas geradas a partir dali —
+é literalmente a solução de fábrica para o problema que você levantou
+desde o início (moto e personagens nunca podem mudar). Se você tiver
+acesso ao Flow (hoje depende de assinatura Google AI Pro/Ultra na maioria
+das regiões, com algum uso de teste limitado):
+
+1. Gere (ou peça a mim para redigir) uma imagem única de cada
+   "ingrediente" — protagonista, ajudante e a moto montada — usando o
+   texto das Seções 2 e 3 como prompt em qualquer gerador de imagem.
+2. Suba essas 3 imagens como "Ingredients" no Flow.
+3. Gere cada uma das 9 cenas (Seção 5) apontando para esses mesmos
+   ingredientes — a ferramenta cuida da consistência visual por você, sem
+   precisar colar a ficha de texto inteira em cada prompt.
+
+**Como usar o documento nas demais plataformas (sem esse recurso):**
 1. Abra a plataforma escolhida e crie uma cena por vez (a maioria limita
    cada geração a 5–10s, o que já bate com a duração sugerida na Seção 4).
 2. Em cada geração, **cole primeiro o texto completo da Seção 2**
