@@ -287,3 +287,37 @@ com plano aberto da moto se afastando na estrada.
       ferramenta de imagem, gerar a partir da Seção 2 uma imagem de
       referência fixa e reutilizá-la (seed/reference-image) em todas as
       cenas — passo opcional, não bloqueia a produção
+
+---
+
+## 7. Onde gerar em plataforma gratuita
+
+Nenhuma das ferramentas conectadas a esta sessão (Morphix, HeyGen, Adobe,
+Canva) tem um caminho gratuito para este tipo de vídeo cinematográfico —
+todas exigem plano pago ou créditos para gerar imagem/vídeo com esse nível
+de qualidade e continuidade (Seção 1). **Isso precisa ser feito fora desta
+conversa**, direto no site/app da plataforma escolhida, colando os textos
+deste documento. Nenhuma delas está conectada às minhas ferramentas, então
+não consigo operar a geração por você — mas indico as opções com camada
+gratuita real hoje:
+
+| Plataforma | Camada gratuita | Observação |
+|---|---|---|
+| **Kling AI** (klingai.com) | Créditos diários grátis | Boa qualidade de vídeo, aceita imagem de referência (image-to-video) e texto; hoje é uma das melhores opções gratuitas para esse estilo cinematográfico |
+| **Luma Dream Machine** (lumalabs.ai) | Gerações limitadas/mês grátis | Boa para closes e texturas (solda, chapa, pintura) |
+| **Pika Labs** (pika.art) | Créditos grátis limitados | Boa para cenas de ação/movimento de câmera |
+| **Hailuo/MiniMax** (hailuoai.video) | Créditos diários grátis | Alternativa quando as outras esgotarem os créditos do dia |
+| **CapCut (recursos de IA)** | Grátis com marca d'água/limites | Mais fraco em fotorrealismo, mas útil para testar enquadramento 9:16 rapidamente |
+
+**Como usar o documento em qualquer uma delas:**
+1. Abra a plataforma escolhida e crie uma cena por vez (a maioria limita
+   cada geração a 5–10s, o que já bate com a duração sugerida na Seção 4).
+2. Em cada geração, **cole primeiro o texto completo da Seção 2**
+   (personagens) **+ a versão "moto-lock" da Seção 3** (moto), e só depois
+   a ação específica da cena (Seção 5).
+3. Baixe cada clipe gerado e junte os 9 na ordem certa em qualquer editor
+   gratuito (CapCut, DaVinci Resolve gratuito, ou o próprio editor da
+   plataforma escolhida).
+4. Como os créditos diários gratuitos costumam ser poucos, talvez seja
+   necessário gerar 1–2 cenas por dia ao longo de alguns dias — isso é
+   normal nesse tipo de plataforma.
