@@ -19,50 +19,52 @@ interpretada pela IA sem memória da cena anterior. Correções feitas:
 | "motagem" | Erro de digitação | "montagem" |
 | Sem descrição fixa de personagem/moto | Maior causa de inconsistência em IA generativa | Criadas **fichas de continuidade** (Seções 2 e 3) que devem ser reaproveitadas literalmente em toda cena gerada |
 | Sem definição de formato técnico (proporção, duração, fps, áudio) | Gera pipeline solto entre cenas | Definido em Seção 4 |
-| "criar um estilo bobber da minha foto" | Nenhuma foto está anexada a esta sessão | Ver aviso na Seção 1 — é necessário anexar a foto de referência antes da geração |
+| "criar um estilo bobber da minha foto" | Precisa de uma ficha de personagem consistente, não só uma descrição solta | Foto recebida e convertida em ficha fixa na Seção 2 (careca, stubble, colete de couro, tênis Vans) |
 
 ---
 
-## 1. Aviso importante — foto de referência ausente
+## 1. Foto de referência — recebida
 
-Você pediu para criar o personagem "old school, estilo bobber" **a partir da
-sua foto**, mas nenhuma imagem foi enviada nesta conversa. Para o rosto do
-personagem se manter **idêntico do início ao fim do vídeo** (sua exigência
-nº 1), o fluxo correto é:
+Foto de rosto (frontal, iluminação neutra) recebida e usada como base fixa
+do personagem principal na Seção 2. Para o rosto se manter **idêntico do
+início ao fim do vídeo** (sua exigência nº 1), o próximo passo é gerar, a
+partir dela, uma **ficha de personagem (character sheet)** — a mesma pessoa
+em 3 ângulos (frente, perfil, 3/4) já com o figurino old school/bobber
+definido na Seção 2 — e usar essa ficha como **imagem de referência fixa**
+em todas as 9 cenas (técnica image-to-video / character-lock), em vez de
+gerar o rosto do zero em cada cena.
 
-1. Anexar 1 foto de rosto nítida, de frente, bem iluminada (e, se possível,
-   1 foto de corpo inteiro).
-2. Gerar, a partir dela, uma **ficha de personagem (character sheet)** — a
-   mesma pessoa em 3 ângulos (frente, perfil, 3/4) já com o figurino old
-   school definido na Seção 2.
-3. Usar essa ficha como **imagem de referência fixa** em todas as 9 cenas
-   (técnica image-to-video / character-lock), em vez de gerar o rosto do
-   zero em cada cena.
-
-Sem esse passo, qualquer gerador de vídeo por IA (Sora, Veo, Kling, Runway
-etc.) vai "reinventar" o rosto a cada nova cena — exatamente o problema que
-você quer evitar. Assim que a foto for anexada, eu gero essa ficha antes de
-partir para as 9 cenas.
+Para isso eu preciso gerar essa imagem pela ferramenta de imagem (Morphix):
+abri a janela de upload na conversa — **arraste a mesma foto ali** para eu
+poder usá-la como referência de edição e gerar a ficha de personagem
+estilizada (careca, old school, tênis Vans etc.). Sem esse passo, qualquer
+gerador de vídeo por IA (Sora, Veo, Kling, Runway etc.) vai "reinventar" o
+rosto a cada nova cena — exatamente o problema que você quer evitar.
 
 ---
 
 ## 2. Ficha de continuidade — Personagens (não alterar em nenhuma cena)
 
 ### Personagem principal — o construtor/motociclista
-- **Identidade visual:** baseada na foto de referência do usuário (rosto,
-  altura e compleição fixos em todas as cenas).
-- **Idade aparente:** homem adulto, 35–45 anos, feição séria e concentrada,
-  típica de mestre de oficina old school.
-- **Cabelo/barba:** barba cheia aparada, cabelo curto ou preso, estilo
-  clássico anos 1950–60 (nada de visual moderno).
-- **Figurino fixo (mesmo em todas as cenas, sujo de graxa progressivamente):**
-  camiseta branca lisa ou regata, calça jeans reta desbotada, botas de couro
-  old school, avental de couro de oficina nas cenas de solda/pintura, relógio
-  de pulso analógico, sem acessórios modernos (nada de smartwatch, tênis,
-  boné com logo atual).
-- **Marcas de identidade** (se existirem na foto): tatuagens, cicatriz,
-  formato específico da barba — devem ser listadas aqui e repetidas
-  literalmente em cada prompt de cena.
+- **Identidade visual (baseada na foto enviada, fixa em todas as cenas):**
+  homem, cerca de 45–50 anos, cabeça raspada/careca, pele clara com tom
+  levemente bronzeado, olhos castanhos, rosto anguloso, barba por fazer
+  rala (stubble curto, não cheia), compleição mediana/atlética, altura
+  média.
+- **Cabelo:** careca (sem cabelo) — mantém a cabeça raspada em **todas** as
+  cenas, do início ao fim.
+- **Figurino old school/bobber (fixo em todas as cenas, sujo de graxa
+  progressivamente ao longo da construção):** camiseta branca lisa ou
+  camisa henley cinza de manga curta, colete de couro preto old school por
+  cima nas cenas de oficina, calça jeans reta escura, **tênis Vans old
+  school** (modelo baixo, xadrez preto e branco ou preto liso — no lugar da
+  bota tradicional, por pedido do usuário), pulseiras/bracelete de couro no
+  pulso, óculos de sol aviador pendurado na gola quando não estiver
+  soldando/pintando, relógio analógico. Sem acessórios modernos (nada de
+  smartwatch, boné com logo atual).
+- **Marcas de identidade:** cabeça 100% raspada e stubble curto são os dois
+  traços que mais precisam se repetir literalmente em cada prompt de cena
+  — são os elementos que mais rápido "escapam" em gerações de IA.
 - **Postura:** mãos de trabalhador, gestos precisos e old school (sem pressa
   "cinematográfica" exagerada, ritmo de mestre artesão).
 
@@ -234,16 +236,20 @@ real e grave de partida de Panhead carburado**, fumaça leve do escape.
 Corte para exterior: estrada Route 66 (placas/horizonte desértico
 característicos), golden hour, o personagem principal — **com o mesmo
 figurino, rosto e a mesma motocicleta exata** das cenas anteriores — pilota
-a bobber old school, sentado ereto no solo seat, jaqueta de couro por cima
-da camiseta branca (mesma base de figurino), som do escapamento V-twin
-dominando a trilha. Câmera acompanha em tracking lateral baixo e finaliza
+a bobber old school, sentado ereto no solo seat, colete de couro preto por
+cima da camiseta branca, tênis Vans, cabeça raspada exposta ou com bandana
+old school amarrada (mesma base de figurino da Seção 2), som do escapamento
+V-twin dominando a trilha. Câmera acompanha em tracking lateral baixo e
+finaliza
 com plano aberto da moto se afastando na estrada.
 
 ---
 
 ## 6. Checklist antes de gerar o vídeo
 
-- [ ] Anexar foto de referência do personagem (Seção 1)
+- [x] Foto de referência do personagem recebida (Seção 1)
+- [ ] Arrastar a mesma foto na janela de upload do Morphix para gerar a
+      ficha de personagem estilizada (character sheet)
 - [x] Proporção final: **9:16** (confirmado)
 - [x] Cor de pintura final da moto: **preta fosca com detalhes em vermelho
       e dourado** (confirmado)
