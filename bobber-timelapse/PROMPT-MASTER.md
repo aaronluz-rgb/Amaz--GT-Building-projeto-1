@@ -19,42 +19,53 @@ interpretada pela IA sem memória da cena anterior. Correções feitas:
 | "motagem" | Erro de digitação | "montagem" |
 | Sem descrição fixa de personagem/moto | Maior causa de inconsistência em IA generativa | Criadas **fichas de continuidade** (Seções 2 e 3) que devem ser reaproveitadas literalmente em toda cena gerada |
 | Sem definição de formato técnico (proporção, duração, fps, áudio) | Gera pipeline solto entre cenas | Definido em Seção 4 |
-| "criar um estilo bobber da minha foto" | Precisa de uma ficha de personagem consistente, não só uma descrição solta | Foto recebida e convertida em ficha fixa na Seção 2 (careca, stubble, colete de couro, tênis Vans) |
+| "criar um estilo bobber da minha foto" | Precisa de uma ficha de personagem consistente, não só uma descrição solta | Como a geração de imagem esbarrou em bloqueios de plano pago (Seção 1), o personagem virou fictício mas com identidade 100% fixa na Seção 2 (careca, stubble, colete de couro, tênis Vans) |
 
 ---
 
-## 1. Foto de referência — recebida
+## 1. Geração de imagem do personagem — tentativas e decisão final
 
-Foto de rosto (frontal, iluminação neutra) recebida e usada como base fixa
-do personagem principal na Seção 2. Para o rosto se manter **idêntico do
-início ao fim do vídeo** (sua exigência nº 1), o próximo passo é gerar, a
-partir dela, uma **ficha de personagem (character sheet)** — a mesma pessoa
-em 3 ângulos (frente, perfil, 3/4) já com o figurino old school/bobber
-definido na Seção 2 — e usar essa ficha como **imagem de referência fixa**
-em todas as 9 cenas (técnica image-to-video / character-lock), em vez de
-gerar o rosto do zero em cada cena.
+Tentei gerar a imagem de referência do personagem (character sheet) por
+três caminhos diferentes, nesta ordem, e todos esbarraram em bloqueio de
+plano pago:
 
-**Sem usar Morphix** (sem créditos disponíveis no momento): a ficha textual
-da Seção 2 já está pronta e é suficiente para você mesmo gerar essa imagem
-de referência em qualquer ferramenta com plano gratuito/créditos próprios
-(ex.: Gemini/Nano Banana, ChatGPT/Sora, Grok Imagine, Kling, Runway) —
-basta anexar a mesma foto que você me enviou + colar o texto da Seção 2
-como prompt de edição, pedindo as 3 poses (frente, perfil, 3/4). Depois é
-só reaproveitar essa imagem gerada como referência fixa nas 9 cenas. Sem
-esse passo, qualquer gerador de vídeo por IA (Sora, Veo, Kling, Runway
-etc.) vai "reinventar" o rosto a cada nova cena — exatamente o problema que
-você quer evitar.
+1. **Morphix** — descartado a seu pedido (sem créditos disponíveis).
+2. **HeyGen** (avatar a partir da sua foto, via `create_prompt_avatar`) —
+   cheguei a subir sua foto como asset (upload concluído com sucesso), mas
+   a chamada de geração retornou **"Avatar creation requires a paid
+   plan"** — sua conta HeyGen está no plano gratuito, que não libera esse
+   recurso.
+3. **Adobe Firefly** (ferramentas conectadas nesta sessão) — indisponível
+   para este uso: as ferramentas de imagem da Adobe aqui só fazem seleção/
+   máscara e ajustes (brilho, cor, recorte) em cima de uma imagem já
+   existente; edição/geração generativa de conteúdo novo **não está
+   habilitada** nesta conexão.
+
+**Decisão (sua, confirmada):** já que nenhuma ferramenta de geração de
+imagem está disponível sem custo extra agora, seguimos sem gerar uma
+imagem de referência. O personagem passa a ser **fictício, mas com
+identidade 100% fixa** — não precisa mais reproduzir seu rosto real, só
+precisa ser **sempre o mesmo do início ao fim da produção** (sua exigência
+nº 1, que continua valendo). A ficha detalhada da Seção 2 já cumpre esse
+papel: é o texto que você cola, **palavra por palavra, em toda cena**, ao
+usar a ferramenta de geração de vídeo por IA que você escolher (Sora, Veo,
+Kling, Runway etc.) — é isso, e não uma imagem, que trava a consistência
+quando não há reference-image disponível.
+
+Se mais adiante você tiver créditos em alguma dessas ferramentas (ou outra
+de sua preferência), o mesmo texto da Seção 2 serve como prompt para gerar
+a imagem de referência a qualquer momento — o documento não muda.
 
 ---
 
 ## 2. Ficha de continuidade — Personagens (não alterar em nenhuma cena)
 
 ### Personagem principal — o construtor/motociclista
-- **Identidade visual (baseada na foto enviada, fixa em todas as cenas):**
-  homem, cerca de 45–50 anos, cabeça raspada/careca, pele clara com tom
-  levemente bronzeado, olhos castanhos, rosto anguloso, barba por fazer
-  rala (stubble curto, não cheia), compleição mediana/atlética, altura
-  média.
+- **Identidade visual (personagem fictício de identidade fixa — mesma
+  descrição em todas as cenas, do início ao fim):** homem, cerca de 45–50
+  anos, cabeça raspada/careca, pele clara com tom levemente bronzeado,
+  olhos castanhos, rosto anguloso, barba por fazer rala (stubble curto,
+  não cheia), compleição mediana/atlética, altura média.
 - **Cabelo:** careca (sem cabelo) — mantém a cabeça raspada em **todas** as
   cenas, do início ao fim.
 - **Figurino old school/bobber (fixo em todas as cenas, sujo de graxa
@@ -251,17 +262,18 @@ com plano aberto da moto se afastando na estrada.
 
 ## 6. Checklist antes de gerar o vídeo
 
-- [x] Foto de referência do personagem recebida (Seção 1)
-- [ ] Gerar a imagem da ficha de personagem estilizada (character sheet)
-      em uma ferramenta de imagem por IA à sua escolha (Morphix está fora
-      por falta de créditos) — anexar a foto + colar o texto da Seção 2
+- [x] Personagem principal definido: **fictício, com identidade 100% fixa**
+      (Seções 1 e 2) — geração de imagem via Morphix, HeyGen e Adobe
+      tentada e bloqueada por plano pago; segue como ficha em texto
 - [x] Proporção final: **9:16** (confirmado)
 - [x] Cor de pintura final da moto: **preta fosca com detalhes em vermelho
       e dourado** (confirmado)
 - [ ] Confirmar se haverá personagem coadjuvante (ajudante) ou só o
       protagonista
-- [ ] Gerar ficha de personagem (character sheet) e ficha técnica da moto
-      **antes** da Cena 1, para usar como imagem de referência fixa em
-      todas as 9 cenas
-- [ ] Usar sempre o mesmo seed/imagem de referência entre cenas, quando a
-      ferramenta de geração permitir
+- [ ] Colar a ficha de personagem (Seção 2) e a ficha "moto-lock" (Seção 3)
+      **literalmente, no início de todo prompt de cena**, ao gerar cada uma
+      das 9 cenas na ferramenta de vídeo por IA escolhida
+- [ ] Se em algum momento você tiver créditos disponíveis em alguma
+      ferramenta de imagem, gerar a partir da Seção 2 uma imagem de
+      referência fixa e reutilizá-la (seed/reference-image) em todas as
+      cenas — passo opcional, não bloqueia a produção
