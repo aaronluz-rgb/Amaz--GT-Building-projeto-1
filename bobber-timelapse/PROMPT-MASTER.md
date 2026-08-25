@@ -83,11 +83,18 @@ a imagem de referência a qualquer momento — o documento não muda.
 - **Postura:** mãos de trabalhador, gestos precisos e old school (sem pressa
   "cinematográfica" exagerada, ritmo de mestre artesão).
 
-### Personagem coadjuvante — ajudante de oficina (opcional, sugestão)
-- Homem mais jovem (20–30 anos), camiseta manga curta enrolada, jeans,
-  boné old school dobrado para trás, aparece nas Cenas 1, 2 e 6 entregando
-  ferramentas/peças. **Se você não quer um segundo personagem, remova esta
-  seção e mantenha só o protagonista em todas as cenas.**
+### Personagem coadjuvante — ajudante de oficina (confirmado no elenco)
+- **Identidade visual fixa (mesma descrição em toda cena em que aparecer):**
+  homem mais jovem, 20–30 anos, cabelo curto castanho escuro penteado para
+  trás, rosto magro, sem barba ou com bigode fino old school, compleição
+  magra/ágil.
+- **Figurino fixo:** camiseta cinza de manga curta enrolada até o ombro,
+  calça jeans desbotada, boné old school dobrado para trás (aba curva),
+  botas de trabalho old school, luvas de couro curtas quando manuseia
+  peças quentes/soldadas.
+- **Participação:** aparece apenas nas Cenas 1, 2 e 6, entregando
+  ferramentas/peças ao personagem principal — nunca é o protagonista da
+  cena, nunca aparece na Cena 9 (Route 66).
 
 > **Regra de ouro:** todo prompt de cena enviado ao gerador de vídeo deve
 > **colar o parágrafo do personagem acima, palavra por palavra**, junto com
@@ -189,17 +196,19 @@ Harley-Davidson Panhead carburado já isolado sobre um cavalete de montagem,
 com o **som real e grave de um V-twin Panhead** ecoando brevemente ao fundo
 (referência sonora/trilha, ainda não ligado nesta cena) enquanto ele observa
 o projeto — todas as peças da futura bobber estão ali, mas ainda
-desmontadas. Luz de lâmpada incandescente, poeira flutuando no facho de luz
-pela janela.
+desmontadas. O ajudante de oficina (personagem coadjuvante) está ao fundo
+organizando ferramentas na bancada. Luz de lâmpada incandescente, poeira
+flutuando no facho de luz pela janela.
 
 ### Cena 2 — Fabricação do quadro rígido "drop-seat" (0:08–0:17)
 Timelapse artesanal na bancada de solda: tubos de aço sendo cortados,
 curvados e soldados à mão (faíscas de solda MIG/TIG), gabarito de montagem
 do quadro rígido (hardtail) fixando os tubos enquanto o personagem principal
 solda ponto a ponto até formar o quadro completo no estilo "drop-seat"
-(travessa central rebaixada). Uso de esmerilhadeira para acabamento dos
-cordões de solda. Ritmo old school, sem CNC ou robótica visível — tudo
-manual.
+(travessa central rebaixada), com o ajudante de oficina segurando o gabarito
+e entregando as peças de tubo cortadas. Uso de esmerilhadeira para
+acabamento dos cordões de solda. Ritmo old school, sem CNC ou robótica
+visível — tudo manual.
 
 ### Cena 3 — Construção artesanal do tanque de combustível (0:17–0:26)
 Sobre uma bigorna/molde, o personagem principal martela e curva chapas de
@@ -217,7 +226,7 @@ sob o banco do quadro já pronto (o mesmo quadro da Cena 2).
 ### Cena 5 — Pintura old school "mestre do pincel" (0:34–0:44)
 Oficina de pintura old school (menos poeira, ambiente mais controlado):
 tanque e quadro já pintados na base preta fosca definida na Seção 3, e o
-personagem principal (ou um "mestre do pincel" convidado — pinstriper),
+próprio personagem principal — no papel de "mestre do pincel" —
 usando pincel fino e mão firme, traça linhas de pinstriping em
 **vermelho e dourado** e um lettering old school combinando as duas cores
 na lateral do tanque. Luz suave de estúdio, câmera em close lento
@@ -231,7 +240,8 @@ com pinstriping, oil bag montado, rodas raiadas polidas, motor Panhead
 limpo e brilhando, escapes cromados — organizadas lado a lado. Câmera em
 travelling lento passando por cada peça em destaque, luz batendo e
 refletindo no cromado e na pintura (esse é o "reveal" antes da montagem
-final).
+final). O ajudante de oficina passa um pano nas peças, dando os últimos
+retoques de limpeza antes do personagem principal assumir a montagem.
 
 ### Cena 7 — Montagem final com detalhe old school (0:52–1:02)
 Timelapse de montagem: personagem principal instala o motor Panhead no
@@ -268,8 +278,8 @@ com plano aberto da moto se afastando na estrada.
 - [x] Proporção final: **9:16** (confirmado)
 - [x] Cor de pintura final da moto: **preta fosca com detalhes em vermelho
       e dourado** (confirmado)
-- [ ] Confirmar se haverá personagem coadjuvante (ajudante) ou só o
-      protagonista
+- [x] Elenco confirmado: protagonista + ajudante de oficina coadjuvante
+      (Seção 2), ambos com ficha visual fixa
 - [ ] Colar a ficha de personagem (Seção 2) e a ficha "moto-lock" (Seção 3)
       **literalmente, no início de todo prompt de cena**, ao gerar cada uma
       das 9 cenas na ferramenta de vídeo por IA escolhida
