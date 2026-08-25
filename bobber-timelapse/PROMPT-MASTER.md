@@ -105,9 +105,10 @@ montagem.
   estilo vintage, dianteira em garfo rígido ou springer old school.
 - **Banco (seat):** solo seat de couro, estofado individual, sem banco
   duplo.
-- **Pintura final:** cor sólida old school (ex.: preto fosco com friso
-  vermelho, ou verde oliva com friso dourado — **escolha uma combinação e
-  fixe**), com pinstriping e lettering feitos à mão ("mestre do pincel").
+- **Pintura final (confirmada):** base preta fosca old school, com detalhes
+  em **vermelho e dourado** — pinstriping duplo (linha fina vermelha
+  acompanhada de linha dourada) contornando tanque e para-lamas, e lettering
+  old school no tanque combinando as duas cores ("mestre do pincel").
 - **Acabamento:** peças cromadas (faróis, guidão, escapes) contrastando com
   a pintura fosca do quadro/tanque.
 
@@ -122,8 +123,9 @@ montagem.
 > rigid drop-seat hardtail frame painted matte black, hand-hammered sheet
 > metal peanut fuel tank, cylindrical hand-hammered oil bag under the solo
 > leather seat, spoked wheels, chrome handlebar and exhaust pipes, matte
-> black paint with hand-painted pinstriping — exact same motorcycle in every
-> shot, only assembly stage changes*
+> black paint with hand-painted red and gold pinstriping and lettering on
+> the tank — exact same motorcycle in every shot, only assembly stage
+> changes*
 
 ---
 
@@ -197,11 +199,13 @@ sob o banco do quadro já pronto (o mesmo quadro da Cena 2).
 
 ### Cena 5 — Pintura old school "mestre do pincel" (0:34–0:44)
 Oficina de pintura old school (menos poeira, ambiente mais controlado):
-tanque e quadro já pintados na cor sólida definida na Seção 3, e o
+tanque e quadro já pintados na base preta fosca definida na Seção 3, e o
 personagem principal (ou um "mestre do pincel" convidado — pinstriper),
-usando pincel fino e mão firme, traça linhas de pinstriping e um lettering
-old school na lateral do tanque. Luz suave de estúdio, câmera em close
-lento acompanhando a ponta do pincel.
+usando pincel fino e mão firme, traça linhas de pinstriping em
+**vermelho e dourado** e um lettering old school combinando as duas cores
+na lateral do tanque. Luz suave de estúdio, câmera em close lento
+acompanhando a ponta do pincel, destacando o contraste do vermelho/dourado
+sobre o fundo preto fosco.
 
 ### Cena 6 — Todas as peças brilhando, prontas (0:44–0:52)
 Painel/plano geral em um espaço protegido e limpo (bancada forrada ou
@@ -241,8 +245,8 @@ com plano aberto da moto se afastando na estrada.
 
 - [ ] Anexar foto de referência do personagem (Seção 1)
 - [x] Proporção final: **9:16** (confirmado)
-- [ ] Confirmar cor de pintura final da moto (Seção 3) — sugestão: preto
-      fosco com friso vermelho
+- [x] Cor de pintura final da moto: **preta fosca com detalhes em vermelho
+      e dourado** (confirmado)
 - [ ] Confirmar se haverá personagem coadjuvante (ajudante) ou só o
       protagonista
 - [ ] Gerar ficha de personagem (character sheet) e ficha técnica da moto
