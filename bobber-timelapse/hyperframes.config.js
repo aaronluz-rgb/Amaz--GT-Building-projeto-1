@@ -13,7 +13,10 @@ export const CONTEXT = {
   // (colete sumindo, moto mudando de formato) porque a maioria das
   // plataformas gratuitas corta ou dilui prompts longos. Para o prompt de
   // cena em si, use as versões *LockShort abaixo.
-  characterSheet: `Homem, cerca de 45–50 anos, cabeça 100% raspada/careca (mantida em todas as cenas), pele clara com tom levemente bronzeado, olhos castanhos, rosto anguloso, barba por fazer rala (stubble curto, não cheia), compleição mediana/atlética, altura média. Figurino old school/bobber fixo, sujo de graxa progressivamente ao longo da construção: camiseta branca lisa ou camisa henley cinza de manga curta, colete de couro preto old school por cima nas cenas de oficina, calça jeans reta escura, tênis Vans old school (modelo baixo, xadrez preto e branco ou preto liso — no lugar da bota tradicional), pulseira/bracelete de couro no pulso, óculos de sol aviador pendurado na gola quando não estiver soldando/pintando, relógio analógico. Sem acessórios modernos (nada de smartwatch, boné com logo atual). Postura de trabalhador, gestos precisos e old school, ritmo de mestre artesão.`,
+  // Rosto/corpo fixo em toda cena. Figurino tem DOIS estados fixos — ver
+  // characterLockShortWork / characterLockShortRiding — decisão tomada
+  // depois de aprovar as imagens de teste (Seção 12 do PROMPT-MASTER.md).
+  characterSheet: `Homem, cerca de 45–50 anos, cabelo curto castanho penteado para trás, pele clara com tom levemente bronzeado, olhos castanhos, rosto anguloso, barba por fazer rala (stubble curto, não cheia), compleição mediana/atlética, altura média. Postura de trabalhador, gestos precisos e old school, ritmo de mestre artesão. Dois figurinos fixos conforme a cena: jaqueta de couro (Cenas 1–8, oficina) ou colete de couro aberto sobre camiseta branca (Cena 9, estrada) — nunca os dois ao mesmo tempo, nunca misturados.`,
 
   sidekickSheet: `Ajudante de oficina: homem mais jovem, 20–30 anos, cabelo curto castanho escuro penteado para trás, rosto magro, sem barba ou com bigode fino old school, compleição magra/ágil. Figurino fixo: camiseta cinza de manga curta enrolada até o ombro, calça jeans desbotada, boné old school dobrado para trás (aba curva), botas de trabalho old school, luvas de couro curtas quando manuseia peças quentes/soldadas. Nunca é o protagonista da cena.`,
 
@@ -23,7 +26,9 @@ export const CONTEXT = {
   // (ver buildPrompt). Curtas o bastante para sobreviver a qualquer limite
   // de caracteres, e repetidas no fim porque modelos de vídeo tendem a dar
   // mais peso às últimas instruções lidas.
-  characterLockShort: `Bald man, shaved head, short stubble beard, ALWAYS wearing an open black leather vest over a white t-shirt — never remove the vest, never add hair, same outfit in every frame.`,
+  characterLockShortWork: `Man with short brown hair combed back, short stubble beard, ALWAYS wearing a worn brown/black leather jacket over a t-shirt, dark jeans, leather work boots — never swap the jacket for a vest, same outfit in every frame.`,
+
+  characterLockShortRiding: `Man with short brown hair combed back, short stubble beard, ALWAYS wearing an open black leather vest over a white t-shirt, dark jeans, checkered Vans sneakers — never swap the vest for a jacket, same outfit as the approved reference photo.`,
 
   sidekickLockShort: `Workshop helper: young man, dark hair combed back, thin build, grey rolled-sleeve t-shirt, faded jeans, backwards old-school cap — always the same, never the protagonist.`,
 
@@ -31,7 +36,9 @@ export const CONTEXT = {
 
   visualStyle: `Fotografia old school, grão de filme sutil (film grain), paleta quente e levemente dessaturada (âmbar/sépia na oficina, contraste alto no sol da estrada), iluminação dura tipo lâmpada incandescente de oficina nas cenas internas e luz natural dourada (golden hour) na Cena 9. Transições em corte seco entre cenas, sem dissolves modernos.`,
 
-  negativePrompt: `remove vest, no vest, character without leather vest, troca de rosto do personagem principal, personagem com cabelo, personagem careca virando personagem com cabelo, mudança de figurino entre cenas, different motorcycle, redesigned motorcycle, different tank shape, different frame shape, moto diferente entre cenas, mudança de cor da pintura, elementos modernos (parafusadeira elétrica, CNC, robótica, smartwatch, boné com logo atual), personagens extras não descritos no elenco, text, captions, watermark, labels, painted lettering words on the tank`,
+  // Comum a toda cena. O termo específico de figurino (`no vest` nas
+  // Cenas 1–8, `no jacket` na Cena 9) é acrescentado por buildNegativePrompt().
+  negativePrompt: `troca de rosto do personagem principal, mudança de cabelo entre cenas, different motorcycle, redesigned motorcycle, different tank shape, different frame shape, moto diferente entre cenas, mudança de cor da pintura, elementos modernos (parafusadeira elétrica, CNC, robótica, smartwatch, boné com logo atual), personagens extras não descritos no elenco, text, captions, watermark, labels, painted lettering words on the tank`,
 
   // Reforço final anti-texto-fantasma — o teste real (Seção 10) mostrou
   // legendas e palavras sendo desenhadas dentro da imagem/vídeo
@@ -39,10 +46,14 @@ export const CONTEXT = {
   // colado no fim de todo prompt, de imagem ou de vídeo.
   noTextGuard: `No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.`,
 
-  // Caminho da imagem-âncora aprovada no teste real (Seção 10) — é ELA que
-  // deve ser anexada como reference-image/imagem inicial em todo prompt de
-  // vídeo abaixo (modo image-to-video), não apenas texto.
-  approvedReferenceImage: "bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg",
+  // Duas imagens-âncora aprovadas nos testes reais (Seções 10 e 12) — é
+  // ELA que deve ser anexada como reference-image/imagem inicial em todo
+  // prompt de vídeo (modo image-to-video), não apenas texto. "work" para
+  // as Cenas 1–8 (jaqueta), "riding" só para a Cena 9 (colete).
+  approvedReferenceImage: {
+    work: "bobber-timelapse/assets/referencia-aprovada-oficina-jaqueta.jpg",
+    riding: "bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg",
+  },
 };
 
 /**
@@ -58,6 +69,12 @@ export function buildReferenceImagePrompt(subject) {
   throw new Error(`Unknown subject: ${subject}`);
 }
 
+function characterLockFor(scene) {
+  return scene.outfit === "riding"
+    ? CONTEXT.characterLockShortRiding
+    : CONTEXT.characterLockShortWork;
+}
+
 /**
  * Monta o prompt final de uma cena de vídeo. Usa as travas CURTAS (não a
  * ficha completa) e as repete no início E no fim, ao redor da ação
@@ -65,7 +82,7 @@ export function buildReferenceImagePrompt(subject) {
  * (colete sumindo, moto mudando de formato perto do final do vídeo).
  */
 function buildPrompt(scene) {
-  const lock = [CONTEXT.characterLockShort];
+  const lock = [characterLockFor(scene)];
   if (scene.hasSidekick) lock.push(CONTEXT.sidekickLockShort);
   lock.push(CONTEXT.motoLockShort);
   const lockBlock = [...lock, CONTEXT.noTextGuard].join(" ");
@@ -74,20 +91,34 @@ function buildPrompt(scene) {
 }
 
 /**
+ * Prompt negativo para uma cena: o comum de CONTEXT.negativePrompt mais o
+ * termo do figurino que NÃO pode aparecer naquele bloco de cenas (Seção 12
+ * — jaqueta e colete nunca se misturam).
+ */
+export function buildNegativePrompt(scene) {
+  const outfitGuard = scene.outfit === "riding" ? "jacket" : "vest";
+  return [CONTEXT.negativePrompt, outfitGuard].join(", ");
+}
+
+/**
  * Prompt de vídeo modo image-to-video (RECOMENDADO): usa a imagem-âncora
- * aprovada (CONTEXT.approvedReferenceImage) como frame inicial — a
- * aparência do personagem/moto já vem da imagem, então o prompt de texto
- * só precisa descrever movimento de câmera e ação, sem repetir a ficha.
- * Evita o "cabo de guerra" entre imagem e texto longo que ainda pode
- * causar drift mesmo com reference-image.
+ * aprovada correspondente ao figurino da cena (CONTEXT.approvedReferenceImage)
+ * como frame inicial — a aparência do personagem/moto já vem da imagem,
+ * então o prompt de texto só precisa descrever movimento de câmera e ação,
+ * sem repetir a ficha. Evita o "cabo de guerra" entre imagem e texto longo
+ * que ainda pode causar drift mesmo com reference-image.
  */
 export function buildImageToVideoPrompt(scene) {
-  return [scene.motionPrompt, CONTEXT.noTextGuard].join(" ");
+  return {
+    referenceImage: CONTEXT.approvedReferenceImage[scene.outfit] ?? CONTEXT.approvedReferenceImage.work,
+    prompt: [scene.motionPrompt, CONTEXT.noTextGuard].join(" "),
+  };
 }
 
 const sceneDefs = [
   {
     id: 1,
+    outfit: "work",
     title: "Chegada na oficina",
     timecode: "0:00–0:08",
     durationSeconds: 8,
@@ -102,6 +133,7 @@ const sceneDefs = [
   },
   {
     id: 2,
+    outfit: "work",
     title: 'Fabricação do quadro rígido "drop-seat"',
     timecode: "0:08–0:17",
     durationSeconds: 9,
@@ -115,6 +147,7 @@ const sceneDefs = [
   },
   {
     id: 3,
+    outfit: "work",
     title: "Construção artesanal do tanque de combustível",
     timecode: "0:17–0:26",
     durationSeconds: 9,
@@ -128,6 +161,7 @@ const sceneDefs = [
   },
   {
     id: 4,
+    outfit: "work",
     title: "Construção do compartimento de óleo cilíndrico",
     timecode: "0:26–0:34",
     durationSeconds: 8,
@@ -141,6 +175,7 @@ const sceneDefs = [
   },
   {
     id: 5,
+    outfit: "work",
     title: 'Pintura old school "mestre do pincel"',
     timecode: "0:34–0:44",
     durationSeconds: 10,
@@ -154,6 +189,7 @@ const sceneDefs = [
   },
   {
     id: 6,
+    outfit: "work",
     title: "Todas as peças brilhando, prontas",
     timecode: "0:44–0:52",
     durationSeconds: 8,
@@ -167,6 +203,7 @@ const sceneDefs = [
   },
   {
     id: 7,
+    outfit: "work",
     title: "Montagem final com detalhe old school",
     timecode: "0:52–1:02",
     durationSeconds: 10,
@@ -180,6 +217,7 @@ const sceneDefs = [
   },
   {
     id: 8,
+    outfit: "work",
     title: "Moto pronta",
     timecode: "1:02–1:08",
     durationSeconds: 6,
@@ -193,6 +231,7 @@ const sceneDefs = [
   },
   {
     id: 9,
+    outfit: "riding",
     title: "Pilotando na Route 66",
     timecode: "1:08–1:18",
     durationSeconds: 10,

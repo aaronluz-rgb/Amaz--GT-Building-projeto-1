@@ -61,25 +61,28 @@ a imagem de referência a qualquer momento — o documento não muda.
 ## 2. Ficha de continuidade — Personagens (não alterar em nenhuma cena)
 
 ### Personagem principal — o construtor/motociclista
-- **Identidade visual (personagem fictício de identidade fixa — mesma
-  descrição em todas as cenas, do início ao fim):** homem, cerca de 45–50
-  anos, cabeça raspada/careca, pele clara com tom levemente bronzeado,
-  olhos castanhos, rosto anguloso, barba por fazer rala (stubble curto,
-  não cheia), compleição mediana/atlética, altura média.
-- **Cabelo:** careca (sem cabelo) — mantém a cabeça raspada em **todas** as
-  cenas, do início ao fim.
-- **Figurino old school/bobber (fixo em todas as cenas, sujo de graxa
-  progressivamente ao longo da construção):** camiseta branca lisa ou
-  camisa henley cinza de manga curta, colete de couro preto old school por
-  cima nas cenas de oficina, calça jeans reta escura, **tênis Vans old
-  school** (modelo baixo, xadrez preto e branco ou preto liso — no lugar da
-  bota tradicional, por pedido do usuário), pulseiras/bracelete de couro no
-  pulso, óculos de sol aviador pendurado na gola quando não estiver
-  soldando/pintando, relógio analógico. Sem acessórios modernos (nada de
-  smartwatch, boné com logo atual).
-- **Marcas de identidade:** cabeça 100% raspada e stubble curto são os dois
-  traços que mais precisam se repetir literalmente em cada prompt de cena
-  — são os elementos que mais rápido "escapam" em gerações de IA.
+- **Identidade visual (personagem fictício de identidade fixa — mesmo
+  rosto e corpo em todas as cenas, do início ao fim):** homem, cerca de
+  45–50 anos, pele clara com tom levemente bronzeado, olhos castanhos,
+  rosto anguloso, barba por fazer rala (stubble curto, não cheia),
+  compleição mediana/atlética, altura média, cabelo curto castanho
+  penteado para trás.
+- **Dois figurinos fixos, confirmados a partir das imagens aprovadas nos
+  testes (Seção 10) — o rosto/corpo acima não muda, só a roupa muda entre
+  esses dois estados, e cada um é fixo dentro do seu bloco de cenas:**
+  - **Figurino de oficina (Cenas 1 a 8):** jaqueta de couro marrom/preta
+    envelhecida (estilo café racer old school), camiseta ou henley por
+    baixo, calça jeans reta escura, botas de couro old school. Vai
+    ficando sujo de graxa progressivamente ao longo da construção.
+  - **Figurino de estrada (Cena 9, somente):** colete de couro preto
+    aberto sobre camiseta branca lisa, calça jeans reta escura, tênis
+    Vans old school (xadrez preto e branco), cabeça exposta ao vento.
+  - **Nunca misturar os dois** — jaqueta não aparece na Cena 9, colete não
+    aparece nas Cenas 1–8.
+- **Marcas de identidade:** mesmo rosto, mesmo corte de cabelo castanho
+  penteado para trás e mesmo stubble em toda cena — são os elementos que
+  mais precisam se repetir literalmente em cada prompt, já que foram o que
+  mais "escapou" em gerações de teste (Seção 10).
 - **Postura:** mãos de trabalhador, gestos precisos e old school (sem pressa
   "cinematográfica" exagerada, ritmo de mestre artesão).
 
@@ -370,12 +373,26 @@ compacta** — ela cabe no limite de praticamente qualquer plataforma e deve
 ser colada **duas vezes em cada prompt de cena: uma no início, outra bem no
 final**, depois da ação:
 
-**Trava curta do personagem (colar sempre, início e fim):**
-> *Bald man, shaved head, short stubble beard, ALWAYS wearing an open
-> black leather vest over a white t-shirt — never remove the vest, never
-> add hair, same outfit in every frame.*
+> **Atualização (após aprovação das imagens de teste — ver Seção 12):** o
+> personagem passou a ter **dois figurinos fixos** em vez de um só — jaqueta
+> de couro nas Cenas 1–8, colete nas Cena 9. As travas curtas abaixo têm uma
+> versão para cada bloco de cenas; use a correta conforme a cena.
 
-**Trava curta da moto (colar sempre, início e fim):**
+**Trava curta do personagem — Cenas 1 a 8, figurino de oficina (colar
+sempre, início e fim):**
+> *Man with short brown hair combed back, short stubble beard, ALWAYS
+> wearing a worn brown/black leather jacket over a t-shirt, dark jeans,
+> leather work boots — never swap the jacket for a vest, same outfit in
+> every frame.*
+
+**Trava curta do personagem — Cena 9 apenas, figurino de estrada (colar
+sempre, início e fim):**
+> *Man with short brown hair combed back, short stubble beard, ALWAYS
+> wearing an open black leather vest over a white t-shirt, dark jeans,
+> checkered Vans sneakers — never swap the vest for a jacket, same outfit
+> as the approved reference photo.*
+
+**Trava curta da moto (colar sempre, início e fim, em qualquer cena):**
 > *Matte black bobber motorcycle with red and gold pinstriping, rigid
 > hardtail drop-seat frame, peanut fuel tank, cylindrical oil bag, spoked
 > wheels, chrome exhaust — exact same shape, proportions and color in
@@ -394,8 +411,9 @@ final**, depois da ação:
 
 **Outras medidas que ajudam:**
 - Se a plataforma tiver campo de **prompt negativo**, use sempre:
-  `remove vest, no vest, different motorcycle, redesigned motorcycle,
-  different tank shape, different frame shape, character with hair`.
+  `different motorcycle, redesigned motorcycle, different tank shape,
+  different frame shape` — e adicione `no vest` nas Cenas 1–8, ou `no
+  jacket` na Cena 9, conforme o figurino daquele bloco (ver Seção 12).
 - Se a plataforma permitir **imagem de referência fixa** (reference-image
   ou "ingredients", como no Google Flow), prefira sempre isso ao texto —
   imagem trava muito mais forte que texto repetido.
@@ -428,19 +446,21 @@ geração nova:** o Nano Banana é muito melhor em **editar uma imagem já
 existente** (mantendo o que já está nela) do que em gerar do zero. O fluxo
 precisa mudar para:
 
-1. **Gere só UMA imagem de referência primeiro** — o personagem principal
-   sozinho, em pé, olhando de frente, sem ação nenhuma ainda. Use a ficha
-   completa da Seção 2 como prompt. Repita/regenere até essa imagem sair
-   com cabeça careca + colete de couro do jeito certo — só avance quando
-   essa primeira imagem estiver aprovada por você.
+> **Atualização:** o passo 1 abaixo já está feito — as duas imagens de
+> referência aprovadas estão em `bobber-timelapse/assets/` (Seção 12).
+> Parta direto do passo 2 usando a imagem correta (jaqueta para Cenas
+> 1–8, colete para a Cena 9).
+
+1. ~~Gere só UMA imagem de referência primeiro~~ — já feito (Seção 12).
 2. **Para cada cena seguinte, não abra um prompt novo do zero.** Na mesma
-   conversa do Gemini, **anexe a última imagem aprovada/gerada** e peça uma
-   edição sobre ela, não uma criação nova. Modelo de instrução:
+   conversa do Gemini, **anexe a imagem-âncora correta (Seção 12)** ou a
+   última imagem aprovada/gerada a partir dela, e peça uma edição sobre
+   ela, não uma criação nova. Modelo de instrução:
    > *"Nesta mesma imagem, mantenha o personagem exatamente idêntico
-   > (mesmo rosto, careca, mesmo colete de couro preto, mesma roupa) e a
-   > moto exatamente idêntica. Altere apenas a ação/cenário para:
-   > [ação específica da Cena X, da Seção 5]. Não redesenhe o personagem
-   > nem a moto — apenas mude a pose/ambiente conforme descrito."*
+   > (mesmo rosto, mesmo cabelo, mesma roupa) e a moto exatamente
+   > idêntica. Altere apenas a ação/cenário para: [ação específica da
+   > Cena X, da Seção 5]. Não redesenhe o personagem nem a moto — apenas
+   > mude a pose/ambiente conforme descrito."*
 3. **Use sempre a imagem mais recente aprovada como base da próxima
    edição** — não volte a usar a imagem original da Cena 1 para gerar a
    Cena 5, use a imagem da Cena 4 (a cadeia precisa ser sequencial, cada
@@ -542,11 +562,13 @@ Existem **dois modos** — use o Modo A sempre que a plataforma permitir.
 
 ### Modo A — Image-to-video (RECOMENDADO)
 
-Anexe a imagem `bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg`
-(ou a última cena boa gerada a partir dela, encadeada — ver Seção 10) como
-**imagem inicial/reference-image** e cole apenas este prompt curto — a
-aparência já vem da imagem, então o texto só precisa descrever movimento e
-ação:
+Há **duas imagens-âncora** agora (Seção 12 — dois figurinos fixos):
+- **Cenas 1 a 8:** anexe `bobber-timelapse/assets/referencia-aprovada-oficina-jaqueta.jpg`
+  (ou a última cena boa gerada a partir dela, encadeada).
+- **Cena 9:** anexe `bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg`.
+
+A aparência já vem da imagem, então o texto só precisa descrever movimento
+e ação:
 
 | Cena | Prompt de movimento (colar com a imagem anexada) |
 |---|---|
@@ -572,8 +594,37 @@ on-screen labels anywhere in the frame.`
 ### Prompt negativo (colar no campo "negative prompt" da plataforma, quando existir)
 
 ```
-remove vest, no vest, character without leather vest, different motorcycle,
-redesigned motorcycle, different tank shape, different frame shape, text,
-captions, watermark, labels, painted lettering words on the tank, character
-with hair, extra unlisted characters
+different motorcycle, redesigned motorcycle, different tank shape,
+different frame shape, text, captions, watermark, labels, painted
+lettering words on the tank, extra unlisted characters
 ```
+Nas Cenas 1–8, acrescente `vest` (sem colete nessas cenas). Na Cena 9,
+acrescente `jacket` (sem jaqueta nessa cena) — ver Seção 12.
+
+---
+
+## 12. Decisão — dois figurinos fixos (oficina e estrada)
+
+Depois de ver a sequência completa de imagens de teste, você decidiu
+**manter dois figurinos** em vez de forçar um único figurino do início ao
+fim: a jaqueta de couro que saiu nas Cenas 1 e 8 (bom para o trabalho na
+oficina) e o colete que saiu na Cena 9 (bom para pilotar). Isso substitui
+a trava de figurino único das Seções 2, 8, 9 e 10 — o rosto/corpo do
+personagem continua 100% fixo em toda cena, só a roupa muda, e muda em um
+único ponto da sequência (troca de figurino ao sair da oficina para pilotar
+na Cena 9, como um motociclista de verdade trocaria de jaqueta por colete
+antes de uma viagem).
+
+**Duas imagens-âncora aprovadas, salvas no repositório:**
+- `bobber-timelapse/assets/referencia-aprovada-oficina-jaqueta.jpg` — rosto,
+  jaqueta de couro, jeans, botas. Use como imagem inicial nas Cenas 1 a 8.
+- `bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg` — rosto,
+  colete de couro, camiseta branca, Vans. Use como imagem inicial só na
+  Cena 9.
+
+**Nota sobre o rosto/cabelo:** as imagens aprovadas mostram o personagem
+com cabelo curto castanho penteado para trás (não careca como definido
+originalmente na Seção 2 antes dos testes). A Seção 2 já foi atualizada
+para refletir esse rosto/cabelo, que é o que está fixado nas duas imagens
+acima — se isso não for o que você quer, avise para eu corrigir a ficha e
+gerar novas imagens-âncora antes de seguir.
