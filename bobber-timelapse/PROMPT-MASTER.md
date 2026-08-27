@@ -406,3 +406,50 @@ final**, depois da ação:
   essa trava curta (`CONTEXT.characterLockShort` e `CONTEXT.motoLockShort`)
   e o `buildPrompt()` agora repete a trava no início e no fim de cada
   `scene.prompt` automaticamente.
+
+---
+
+## 9. Correção específica — gerando com Nano Banana (Gemini)
+
+Você mandou 3 imagens geradas no Nano Banana (Gemini) e o problema ali é
+mais grave que só "faltou o colete": **as 3 fotos mostram 3 homens
+diferentes** — nenhum careca, nenhum com o colete definido. Isso não é um
+desvio de detalhe, é uma pessoa nova sendo inventada a cada geração.
+
+**Causa:** o Nano Banana, como qualquer gerador de imagem por texto, não
+tem memória de um rosto específico entre gerações separadas. Se cada uma
+das 9 imagens for pedida como um prompt de texto novo (mesmo colando a
+ficha completa), o modelo reinterpreta a descrição do zero toda vez e
+sorteia um rosto diferente — texto aproxima idade/roupa/cenário, mas não
+trava identidade facial.
+
+**A correção certa para o Nano Banana especificamente — modo edição, não
+geração nova:** o Nano Banana é muito melhor em **editar uma imagem já
+existente** (mantendo o que já está nela) do que em gerar do zero. O fluxo
+precisa mudar para:
+
+1. **Gere só UMA imagem de referência primeiro** — o personagem principal
+   sozinho, em pé, olhando de frente, sem ação nenhuma ainda. Use a ficha
+   completa da Seção 2 como prompt. Repita/regenere até essa imagem sair
+   com cabeça careca + colete de couro do jeito certo — só avance quando
+   essa primeira imagem estiver aprovada por você.
+2. **Para cada cena seguinte, não abra um prompt novo do zero.** Na mesma
+   conversa do Gemini, **anexe a última imagem aprovada/gerada** e peça uma
+   edição sobre ela, não uma criação nova. Modelo de instrução:
+   > *"Nesta mesma imagem, mantenha o personagem exatamente idêntico
+   > (mesmo rosto, careca, mesmo colete de couro preto, mesma roupa) e a
+   > moto exatamente idêntica. Altere apenas a ação/cenário para:
+   > [ação específica da Cena X, da Seção 5]. Não redesenhe o personagem
+   > nem a moto — apenas mude a pose/ambiente conforme descrito."*
+3. **Use sempre a imagem mais recente aprovada como base da próxima
+   edição** — não volte a usar a imagem original da Cena 1 para gerar a
+   Cena 5, use a imagem da Cena 4 (a cadeia precisa ser sequencial, cada
+   cena editando a anterior) para a moto ir "evoluindo" de peça solta até
+   montada, mas com o mesmo personagem em todas.
+4. Se em algum ponto a edição sair errada (personagem mudou), **não
+   continue a partir dela** — peça a edição de novo a partir da última
+   imagem que estava certa.
+
+Resumindo: no Nano Banana o "character-lock" não é o texto repetido (isso
+é para plataformas de vídeo puro-texto, Seção 8) — é o **encadeamento de
+edições sobre a mesma imagem**, sempre dentro da mesma conversa.
