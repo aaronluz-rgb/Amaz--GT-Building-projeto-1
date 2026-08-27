@@ -341,3 +341,68 @@ das regiões, com algum uso de teste limitado):
 4. Como os créditos diários gratuitos costumam ser poucos, talvez seja
    necessário gerar 1–2 cenas por dia ao longo de alguns dias — isso é
    normal nesse tipo de plataforma.
+
+---
+
+## 8. Correção pós-teste — moto mudou de formato e o colete sumiu
+
+Você testou e relatou dois problemas no vídeo gerado: **a moto mudou de
+formato perto do final** e **o personagem apareceu sem o colete de couro**
+(estilo do "dono da moto" não ficou como definido). Isso é um sintoma
+clássico de geração de vídeo por IA e tem duas causas prováveis:
+
+1. **Prompt longo demais.** A ficha completa das Seções 2+3 tem mais de
+   1.500 caracteres. A maioria das plataformas gratuitas (Kling, Pika,
+   Luma, Hailuo) tem um limite de prompt bem menor — o excesso costuma ser
+   **cortado silenciosamente** ou perder peso, e é comum que detalhes de
+   figurino (como "colete de couro") sejam os primeiros a se perder.
+2. **Falta de reforço no fim do prompt.** Modelos de vídeo tendem a dar
+   mais peso às últimas instruções lidas. Se a trava de consistência só
+   aparece no início do prompt e a ação da cena é longa, o modelo
+   "esquece" a trava até o final do clipe — efeito mais visível quanto mais
+   tarde a cena aparece na sequência (por isso o problema apareceu perto
+   do final).
+
+### A correção: trava curta, repetida no início E no fim
+
+Em vez da ficha completa (Seções 2 e 3), use esta versão **curta e
+compacta** — ela cabe no limite de praticamente qualquer plataforma e deve
+ser colada **duas vezes em cada prompt de cena: uma no início, outra bem no
+final**, depois da ação:
+
+**Trava curta do personagem (colar sempre, início e fim):**
+> *Bald man, shaved head, short stubble beard, ALWAYS wearing an open
+> black leather vest over a white t-shirt — never remove the vest, never
+> add hair, same outfit in every frame.*
+
+**Trava curta da moto (colar sempre, início e fim):**
+> *Matte black bobber motorcycle with red and gold pinstriping, rigid
+> hardtail drop-seat frame, peanut fuel tank, cylindrical oil bag, spoked
+> wheels, chrome exhaust — exact same shape, proportions and color in
+> every frame, do not redesign the motorcycle.*
+
+**Modelo de prompt por cena (formato final a usar na plataforma):**
+```
+[TRAVA CURTA — PERSONAGEM]
+[TRAVA CURTA — MOTO]
+
+[AÇÃO ESPECÍFICA DA CENA — mantenha curta e direta, 2–3 frases no máximo]
+
+[TRAVA CURTA — PERSONAGEM, repetida]
+[TRAVA CURTA — MOTO, repetida]
+```
+
+**Outras medidas que ajudam:**
+- Se a plataforma tiver campo de **prompt negativo**, use sempre:
+  `remove vest, no vest, different motorcycle, redesigned motorcycle,
+  different tank shape, different frame shape, character with hair`.
+- Se a plataforma permitir **imagem de referência fixa** (reference-image
+  ou "ingredients", como no Google Flow), prefira sempre isso ao texto —
+  imagem trava muito mais forte que texto repetido.
+- Gere as cenas finais (7, 8 e 9) **de novo, isoladas**, usando só a trava
+  curta acima — não precisa regerar o vídeo inteiro, só as cenas onde o
+  problema apareceu.
+- O arquivo `bobber-timelapse/hyperframes.config.js` já foi atualizado com
+  essa trava curta (`CONTEXT.characterLockShort` e `CONTEXT.motoLockShort`)
+  e o `buildPrompt()` agora repete a trava no início e no fim de cada
+  `scene.prompt` automaticamente.
