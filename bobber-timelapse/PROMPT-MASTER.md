@@ -453,3 +453,78 @@ precisa mudar para:
 Resumindo: no Nano Banana o "character-lock" não é o texto repetido (isso
 é para plataformas de vídeo puro-texto, Seção 8) — é o **encadeamento de
 edições sobre a mesma imagem**, sempre dentro da mesma conversa.
+
+---
+
+## 10. Segunda rodada de teste — diagnóstico e imagem-âncora escolhida
+
+Você mandou as 9 fotos geradas. Análise direta:
+
+**A Cena 9 (Route 66) é a única que bateu com a ficha:** colete de couro
+preto aberto, camiseta branca, jeans, tênis estilo Vans. **Essa é agora a
+imagem-âncora oficial do projeto**, salva em
+`bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg`. A partir
+de agora, **toda edição parte dela** (não da Cena 1).
+
+**Confirmando o problema que você reportou — pelo menos 3 pessoas
+diferentes na sequência:**
+- Cena 1 (chegada): jaqueta de couro (não colete), botas (não Vans), cabelo
+  castanho penteado — figurino errado e diferente da Cena 9.
+- Cenas 3, 4 e 5 (tanque, oil bag, pintura): um homem **completamente
+  diferente** — mais velho, cabelo grisalho, óculos, avental — não é o
+  mesmo ator das Cenas 1 ou 9 em nenhum traço.
+- Cenas 2 e 6 (solda, peças prontas): outros homens de barba, também
+  diferentes entre si e do protagonista.
+- Cena 8 (moto pronta): parecido com a Cena 1 (jaqueta), mas de novo sem o
+  colete/camiseta branca da Cena 9.
+- **Cena 7 (montagem final, parafuso a parafuso) não foi gerada** — a
+  sequência pulou direto das peças na mesa (Cena 6) para a moto pronta
+  (Cena 8).
+
+**Bug extra encontrado — texto sendo desenhado dentro da imagem:** várias
+fotos saíram com letras falsas incrustadas ("SINGLE PHOTOGRAPH — COHESIVE
+IMAGE" no canto, "PINSTRIPING MESTRE / MOTO ESTILO" e "OLD SCHOOL" pintados
+no tanque). Isso não foi pedido — é o modelo tentando "rotular" a imagem.
+**Correção:** adicione ao final de todo prompt: `no text, no captions, no
+watermark, no labels, no logos on the tank besides hand-painted pinstriping
+lines` — e evite frases de metadado tipo "single photograph, cohesive
+image" dentro do prompt criativo (se você usa algum app/wrapper que injeta
+esse texto automaticamente, é ele quem está vazando para dentro da imagem).
+
+### Prompts prontos — regerar Cenas 1 a 8 a partir da imagem-âncora
+
+Anexe **sempre a imagem `referencia-aprovada-cena9-route66.jpg`** (ou a
+última cena boa gerada a partir dela) no Nano Banana e cole o prompt
+correspondente. Ordem sugerida: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8, cada uma
+editando a imagem da cena anterior (a moto "desmonta" para trás a partir da
+Cena 9, ou você monta a sequência normalmente e só usa a Cena 9 como
+âncora de rosto/figurino em toda edição, o que for mais prático no app).
+
+**Instrução fixa a repetir em toda edição (cole antes da ação):**
+> *"Mantenha exatamente o mesmo personagem desta imagem (mesmo rosto,
+> mesmo colete de couro preto aberto sobre camiseta branca, mesmo jeans,
+> mesmo tênis) — não troque a roupa por jaqueta, não remova o colete.
+> Mude apenas a ação e o cenário para: [ação abaixo]. No text, no
+> captions, no watermark, no labels."*
+
+1. **Cena 1:** chegando a uma oficina old school com peças de moto
+   espalhadas — rodas raiadas na parede, chapas cortadas, motor Panhead
+   isolado num cavalete — observando o projeto, ajudante ao fundo
+   organizando ferramentas.
+2. **Cena 2:** soldando à mão o quadro rígido "drop-seat" na bancada,
+   faíscas de solda, ajudante segurando o gabarito e entregando tubos.
+3. **Cena 3:** martelando chapa de aço numa bigorna para formar o tanque
+   peanut clássico, closes nas mãos batendo o metal.
+4. **Cena 4:** enrolando chapa metálica numa calandra manual para formar o
+   oil bag cilíndrico, testando o encaixe sob o banco.
+5. **Cena 5:** fazendo pinstriping à mão em vermelho e dourado sobre o
+   tanque já pintado de preto fosco, pincel fino, sem lettering nenhum
+   escrito (sem palavras no tanque).
+6. **Cena 6:** ao lado de todas as peças prontas e brilhando organizadas
+   numa bancada — quadro pintado, tanque com pinstriping, oil bag, rodas
+   polidas, motor limpo — ajudante passando um pano nas peças.
+7. **Cena 7:** montando a moto — instalando o motor no quadro, encaixando
+   o tanque, apertando parafusos com chave old school (sem parafusadeira
+   elétrica).
+8. **Cena 8:** dando um passo atrás olhando a moto 100% montada com
+   orgulho, motor ligado pela primeira vez, fumaça leve do escape.
