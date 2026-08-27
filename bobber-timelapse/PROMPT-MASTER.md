@@ -528,3 +528,52 @@ Cena 9, ou você monta a sequência normalmente e só usa a Cena 9 como
    elétrica).
 8. **Cena 8:** dando um passo atrás olhando a moto 100% montada com
    orgulho, motor ligado pela primeira vez, fumaça leve do escape.
+
+---
+
+## 11. Prompts finais de vídeo — prontos para usar
+
+Estes são os prompts definitivos para gerar os 9 clipes de vídeo, já com
+todas as correções das Seções 8, 9 e 10 aplicadas (trava curta repetida,
+prompt negativo, e o bloqueio anti-texto-fantasma). Também gerados e
+testados em `bobber-timelapse/hyperframes.config.js`.
+
+Existem **dois modos** — use o Modo A sempre que a plataforma permitir.
+
+### Modo A — Image-to-video (RECOMENDADO)
+
+Anexe a imagem `bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg`
+(ou a última cena boa gerada a partir dela, encadeada — ver Seção 10) como
+**imagem inicial/reference-image** e cole apenas este prompt curto — a
+aparência já vem da imagem, então o texto só precisa descrever movimento e
+ação:
+
+| Cena | Prompt de movimento (colar com a imagem anexada) |
+|---|---|
+| 1 | `Static tripod shot, subtle handheld sway as the man studies the scattered motorcycle parts and the engine on the stand. Helper organizing tools in the background. Dust drifting in the incandescent light beam. No timelapse yet, real-time pace. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 2 | `Fast timelapse: hand-welding steel tubes into the rigid drop-seat frame at the workbench, bright welding sparks, helper holding the jig and handing over cut tube pieces, then grinder sparks finishing the weld seams. Static tripod, sped-up motion, all manual work. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 3 | `Fast timelapse with intercut macro close-ups: hands hammering raw sheet steel over an anvil into the classic peanut fuel tank shape, welding the two halves, sanding the seam. Static tripod, sped-up motion, raw metal catching the workshop light. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 4 | `Fast timelapse, slightly elevated angle: rolling sheet metal through a manual roller into a cylindrical shape for the oil bag, welding the seam and end caps, then test-fitting it under the seat of the already-built frame. Static tripod, sped-up motion. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 5 | `Real-time speed, slow push-in close-up following the tip of a fine brush painting red and gold pinstripe lines onto the matte black tank. Soft studio light. No words or lettering painted on the tank, decorative pinstripe lines only. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 6 | `Slow lateral dolly passing over all the finished parts laid out and shining — painted frame, pinstriped tank, oil bag, polished spoked wheels, clean engine, chrome exhausts. Helper wiping the parts with a cloth. Light reflecting off chrome and paint, reveal-style lighting. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 7 | `Fast timelapse: installing the engine into the frame, fitting the tank, mounting the oil bag under the seat, mounting the spoked wheels, tightening bolts with an old-school hand wrench (no power tools), connecting exposed vintage-style wiring. Quick cuts between assembly steps, static tripod. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 8 | `Studio reveal lighting, backlight plus side light, slight dolly-in. The man steps back to admire the fully assembled motorcycle, then starts the engine for the first time — light exhaust smoke, proud expression. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+| 9 | `Animate this exact photo: low lateral tracking camera following the motorcycle down the Route 66 desert road, golden hour light, light exhaust haze. Ends on a wide shot of the motorcycle riding away into the distance. No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.` |
+
+### Modo B — Texto puro (sem imagem de referência)
+
+Só use se a plataforma não aceitar imagem inicial. É o prompt completo
+(trava curta + ação + trava curta repetida no fim + bloqueio anti-texto),
+gerado por `buildPrompt()` em `hyperframes.config.js` — importe o módulo e
+leia `SCENES[i].prompt`, ou copie da tabela da Seção 8 e acrescente no
+final de cada um: `No text, no captions, no watermark, no logos, no
+on-screen labels anywhere in the frame.`
+
+### Prompt negativo (colar no campo "negative prompt" da plataforma, quando existir)
+
+```
+remove vest, no vest, character without leather vest, different motorcycle,
+redesigned motorcycle, different tank shape, different frame shape, text,
+captions, watermark, labels, painted lettering words on the tank, character
+with hair, extra unlisted characters
+```

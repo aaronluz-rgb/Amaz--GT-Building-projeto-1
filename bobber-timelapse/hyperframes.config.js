@@ -31,7 +31,18 @@ export const CONTEXT = {
 
   visualStyle: `Fotografia old school, grão de filme sutil (film grain), paleta quente e levemente dessaturada (âmbar/sépia na oficina, contraste alto no sol da estrada), iluminação dura tipo lâmpada incandescente de oficina nas cenas internas e luz natural dourada (golden hour) na Cena 9. Transições em corte seco entre cenas, sem dissolves modernos.`,
 
-  negativePrompt: `remove vest, no vest, character without leather vest, troca de rosto do personagem principal, personagem com cabelo, personagem careca virando personagem com cabelo, mudança de figurino entre cenas, different motorcycle, redesigned motorcycle, different tank shape, different frame shape, moto diferente entre cenas, mudança de cor da pintura, elementos modernos (parafusadeira elétrica, CNC, robótica, smartwatch, boné com logo atual), personagens extras não descritos no elenco`,
+  negativePrompt: `remove vest, no vest, character without leather vest, troca de rosto do personagem principal, personagem com cabelo, personagem careca virando personagem com cabelo, mudança de figurino entre cenas, different motorcycle, redesigned motorcycle, different tank shape, different frame shape, moto diferente entre cenas, mudança de cor da pintura, elementos modernos (parafusadeira elétrica, CNC, robótica, smartwatch, boné com logo atual), personagens extras não descritos no elenco, text, captions, watermark, labels, painted lettering words on the tank`,
+
+  // Reforço final anti-texto-fantasma — o teste real (Seção 10) mostrou
+  // legendas e palavras sendo desenhadas dentro da imagem/vídeo
+  // ("SINGLE PHOTOGRAPH — COHESIVE IMAGE", lettering no tanque). Sempre
+  // colado no fim de todo prompt, de imagem ou de vídeo.
+  noTextGuard: `No text, no captions, no watermark, no logos, no on-screen labels anywhere in the frame.`,
+
+  // Caminho da imagem-âncora aprovada no teste real (Seção 10) — é ELA que
+  // deve ser anexada como reference-image/imagem inicial em todo prompt de
+  // vídeo abaixo (modo image-to-video), não apenas texto.
+  approvedReferenceImage: "bobber-timelapse/assets/referencia-aprovada-cena9-route66.jpg",
 };
 
 /**
@@ -57,9 +68,21 @@ function buildPrompt(scene) {
   const lock = [CONTEXT.characterLockShort];
   if (scene.hasSidekick) lock.push(CONTEXT.sidekickLockShort);
   lock.push(CONTEXT.motoLockShort);
-  const lockBlock = lock.join(" ");
+  const lockBlock = [...lock, CONTEXT.noTextGuard].join(" ");
 
   return [lockBlock, scene.action, lockBlock].join("\n\n");
+}
+
+/**
+ * Prompt de vídeo modo image-to-video (RECOMENDADO): usa a imagem-âncora
+ * aprovada (CONTEXT.approvedReferenceImage) como frame inicial — a
+ * aparência do personagem/moto já vem da imagem, então o prompt de texto
+ * só precisa descrever movimento de câmera e ação, sem repetir a ficha.
+ * Evita o "cabo de guerra" entre imagem e texto longo que ainda pode
+ * causar drift mesmo com reference-image.
+ */
+export function buildImageToVideoPrompt(scene) {
+  return [scene.motionPrompt, CONTEXT.noTextGuard].join(" ");
 }
 
 const sceneDefs = [
@@ -75,6 +98,7 @@ const sceneDefs = [
     audio:
       "Som real e grave de um V-twin Panhead ecoando brevemente ao fundo (referência sonora/trilha, motor ainda não ligado nesta cena).",
     action: `Personagem principal chega a uma oficina old school com peças de motocicleta espalhadas por bancadas e pelo chão: rodas raiadas encostadas na parede, chapas de metal cortadas, ferramentas antigas penduradas, um motor Harley-Davidson Panhead carburado já isolado sobre um cavalete de montagem, enquanto ele observa o projeto — todas as peças da futura bobber estão ali, mas ainda desmontadas. O ajudante de oficina está ao fundo organizando ferramentas na bancada.`,
+    motionPrompt: `Static tripod shot, subtle handheld sway as the man studies the scattered motorcycle parts and the engine on the stand. Helper organizing tools in the background. Dust drifting in the incandescent light beam. No timelapse yet, real-time pace.`,
   },
   {
     id: 2,
@@ -87,6 +111,7 @@ const sceneDefs = [
     lighting: "Faíscas de solda MIG/TIG iluminando a cena, ambiente de oficina old school.",
     audio: "Ruído de oficina: esmerilhadeira e solda.",
     action: `Timelapse artesanal na bancada de solda: tubos de aço sendo cortados, curvados e soldados à mão, gabarito de montagem do quadro rígido (hardtail) fixando os tubos enquanto o personagem principal solda ponto a ponto até formar o quadro completo no estilo "drop-seat" (travessa central rebaixada), com o ajudante de oficina segurando o gabarito e entregando as peças de tubo cortadas. Uso de esmerilhadeira para acabamento dos cordões de solda. Ritmo old school, sem CNC ou robótica visível — tudo manual.`,
+    motionPrompt: `Fast timelapse: hand-welding steel tubes into the rigid drop-seat frame at the workbench, bright welding sparks, helper holding the jig and handing over cut tube pieces, then grinder sparks finishing the weld seams. Static tripod, sped-up motion, all manual work.`,
   },
   {
     id: 3,
@@ -99,6 +124,7 @@ const sceneDefs = [
     lighting: "Luz de oficina refletindo na textura do metal cru.",
     audio: "Ruído de oficina: martelo de chapeamento.",
     action: `Sobre uma bigorna/molde, o personagem principal martela e curva chapas de aço a frio (metal shaping/wheeling machine old school) até formar o corpo do tanque clássico (peanut tank), solda as duas metades da chapa, lixa e aplica massa de acabamento. Closes nas mãos batendo o metal com martelo de borracha, textura do metal cru refletindo a luz da oficina.`,
+    motionPrompt: `Fast timelapse with intercut macro close-ups: hands hammering raw sheet steel over an anvil into the classic peanut fuel tank shape, welding the two halves, sanding the seam. Static tripod, sped-up motion, raw metal catching the workshop light.`,
   },
   {
     id: 4,
@@ -111,6 +137,7 @@ const sceneDefs = [
     lighting: "Luz de oficina, mesma continuidade das Cenas 2 e 3.",
     audio: "Ruído de oficina: martelo de chapeamento e solda.",
     action: `Mesmo processo artesanal em chapa metálica, agora enrolando a chapa em forma cilíndrica (calandra manual old school), soldando a costura longitudinal e as tampas das extremidades do oil bag, testando o encaixe sob o banco do quadro já pronto (o mesmo quadro da Cena 2).`,
+    motionPrompt: `Fast timelapse, slightly elevated angle: rolling sheet metal through a manual roller into a cylindrical shape for the oil bag, welding the seam and end caps, then test-fitting it under the seat of the already-built frame. Static tripod, sped-up motion.`,
   },
   {
     id: 5,
@@ -122,7 +149,8 @@ const sceneDefs = [
       "Câmera em movimento, close lento (slow push-in) acompanhando a ponta do pincel, velocidade real (sem timelapse).",
     lighting: "Luz suave de estúdio, ambiente de pintura mais controlado (menos poeira).",
     audio: "Silêncio ou trilha instrumental old rock-blues.",
-    action: `Oficina de pintura old school: tanque e quadro já pintados na base preta fosca, e o próprio personagem principal — no papel de "mestre do pincel" — usando pincel fino e mão firme, traça linhas de pinstriping em vermelho e dourado e um lettering old school combinando as duas cores na lateral do tanque, destacando o contraste do vermelho/dourado sobre o fundo preto fosco.`,
+    action: `Oficina de pintura old school: tanque e quadro já pintados na base preta fosca, e o próprio personagem principal — no papel de "mestre do pincel" — usando pincel fino e mão firme, traça linhas de pinstriping em vermelho e dourado na lateral do tanque, destacando o contraste do vermelho/dourado sobre o fundo preto fosco. Sem nenhuma palavra ou letra pintada no tanque.`,
+    motionPrompt: `Real-time speed, slow push-in close-up following the tip of a fine brush painting red and gold pinstripe lines onto the matte black tank. Soft studio light. No words or lettering painted on the tank, decorative pinstripe lines only.`,
   },
   {
     id: 6,
@@ -135,6 +163,7 @@ const sceneDefs = [
     lighting: "Luz batendo e refletindo no cromado e na pintura — plano tipo 'reveal'.",
     audio: "Silêncio ou trilha instrumental old rock-blues, sem ruído de oficina.",
     action: `Painel/plano geral em um espaço protegido e limpo (bancada forrada ou tapete de feltro): todas as peças já finalizadas — quadro pintado, tanque com pinstriping, oil bag montado, rodas raiadas polidas, motor Panhead limpo e brilhando, escapes cromados — organizadas lado a lado. O ajudante de oficina passa um pano nas peças, dando os últimos retoques de limpeza antes do personagem principal assumir a montagem.`,
+    motionPrompt: `Slow lateral dolly passing over all the finished parts laid out and shining — painted frame, pinstriped tank, oil bag, polished spoked wheels, clean engine, chrome exhausts. Helper wiping the parts with a cloth. Light reflecting off chrome and paint, reveal-style lighting.`,
   },
   {
     id: 7,
@@ -147,6 +176,7 @@ const sceneDefs = [
     lighting: "Luz de oficina, mesma continuidade das cenas anteriores.",
     audio: "Ruído de oficina: chave de boca, encaixe de peças metálicas.",
     action: `Timelapse de montagem: personagem principal instala o motor Panhead no quadro rígido, encaixa o tanque, fixa o oil bag sob o banco solo, monta as rodas raiadas, aperta parafuso a parafuso com chave old school (nada de parafusadeira elétrica visível), conecta os cabos e a fiação exposta estilo vintage. Cada peça que entra é exatamente a mesma peça mostrada nas cenas anteriores (mesma cor, mesmo formato).`,
+    motionPrompt: `Fast timelapse: installing the engine into the frame, fitting the tank, mounting the oil bag under the seat, mounting the spoked wheels, tightening bolts with an old-school hand wrench (no power tools), connecting exposed vintage-style wiring. Quick cuts between assembly steps, static tripod.`,
   },
   {
     id: 8,
@@ -159,6 +189,7 @@ const sceneDefs = [
     lighting: "Iluminação tipo 'reveal' de estúdio: contra-luz + luz lateral.",
     audio: "Som real e grave de partida de Panhead carburado.",
     action: `Plano final da bobber 100% montada, o personagem principal dá um passo atrás, observa a moto pronta com orgulho, liga o motor pela primeira vez — fumaça leve do escape.`,
+    motionPrompt: `Studio reveal lighting, backlight plus side light, slight dolly-in. The man steps back to admire the fully assembled motorcycle, then starts the engine for the first time — light exhaust smoke, proud expression.`,
   },
   {
     id: 9,
@@ -171,6 +202,7 @@ const sceneDefs = [
     lighting: "Golden hour, luz natural dourada.",
     audio: "Som do escapamento V-twin dominando a trilha.",
     action: `Corte para exterior: estrada Route 66 (placas/horizonte desértico característicos), o personagem principal — com o mesmo figurino, rosto e a mesma motocicleta exata das cenas anteriores — pilota a bobber old school, sentado ereto no solo seat, colete de couro preto por cima da camiseta branca, tênis Vans, cabeça raspada exposta ou com bandana old school amarrada.`,
+    motionPrompt: `Animate this exact photo: low lateral tracking camera following the motorcycle down the Route 66 desert road, golden hour light, light exhaust haze. Ends on a wide shot of the motorcycle riding away into the distance.`,
   },
 ];
 
