@@ -628,3 +628,68 @@ originalmente na Seção 2 antes dos testes). A Seção 2 já foi atualizada
 para refletir esse rosto/cabelo, que é o que está fixado nas duas imagens
 acima — se isso não for o que você quer, avise para eu corrigir a ficha e
 gerar novas imagens-âncora antes de seguir.
+
+---
+
+## 13. Primeiros vídeos gerados (Magnific + Google Veo 3.1 lite) — diagnóstico
+
+Você gerou os primeiros clipes de vídeo pelo **Magnific, usando o modelo
+Google Veo 3.1 lite** (versão mais barata, para economizar créditos).
+Recebi 6 dos 9: Cena 1 (chegada), Cena 2 (solda do quadro), Cena 5
+(pintura), Cena 6 (painel de peças), Cena 8 (moto pronta) e Cena 9
+(Route 66). Faltam Cenas 3, 4 e 7.
+
+**O que funcionou:** o primeiro frame da Cena 1 bate exatamente com a
+imagem-âncora da jaqueta — confirma que a imagem-âncora funciona como
+frame inicial no Veo 3.1 lite. A Cena 9 manteve colete + camiseta branca +
+Vans.
+
+**Problema novo, específico do Veo 3.1 lite:** mesmo começando no frame
+certo, o modelo "foge" da cena em ~2 segundos de um clipe de 4s — na Cena
+1, ele abandona o personagem e o cenário de chegada e passa a mostrar uma
+solda com duas pessoas diferentes já na metade do vídeo. **A versão
+"lite" tem pouca aderência ao prompt e ao frame inicial** — ela tende a
+"continuar a história" sozinha em vez de ficar na ação descrita. Isso é
+uma limitação de modelo/camada, não algo que se resolve só com texto
+melhor.
+
+**Problemas que se repetiram das Seções 9/10:**
+- Cena 5 (pintura): personagem errado de novo (homem grisalho, óculos —
+  não é nem a jaqueta nem o colete aprovados), com o texto fantasma
+  "PINSTRIPING MESTRE / MOTO ESTILO" pintado no tanque e um artefato de
+  dupla exposição/fantasma sobre a imagem.
+- Todos os clipes: "SINGLE PHOTOGRAPH — CONESIVE IMAGE" ainda aparece
+  pixelado no canto — o prompt negativo "no text/no watermark" não está
+  sendo aplicado pelo Veo 3.1 lite (provável: o campo de prompt negativo
+  do Magnific não repassa para esse modelo, ou ele ignora).
+- Cena 6: erro de conteúdo — devia mostrar peças **soltas**, mas mostra a
+  moto **já montada**.
+- Ajudante de oficina (Cena 2): aparece como um homem barbudo de óculos de
+  proteção, não como a ficha da Seção 2 (jovem, boné, mangas enroladas) —
+  prioridade baixa, é personagem secundário.
+
+### Plano de ação, priorizado para gastar poucos créditos
+
+Como você está economizando créditos, **não regenere tudo** — só o que
+está realmente quebrado:
+
+1. **Prioridade alta — regerar:** Cena 5 (personagem errado + texto
+   fantasma) e Cena 6 (moto montada em vez de peças soltas). São as únicas
+   com erro de conteúdo, não só de estilo.
+2. **Cena 1 — decida você:** o clipe tem ~2s aproveitáveis antes de
+   "fugir" da cena; ou aceita esses 2s cortados na montagem (grátis, sem
+   gastar crédito novo), ou regenera pedindo duração mais curta.
+3. **Cenas 2, 8 — aceitáveis, opcional regenerar:** conteúdo correto,
+   personagem levemente fora do padrão. Só regenere se sobrarem créditos.
+4. **Ainda faltam gerar, sem economia possível:** Cenas 3, 4 e 7.
+
+**Ajustes para as próximas gerações no Veo 3.1 lite (Magnific), para não
+desperdiçar crédito de novo:**
+- Escreva `no text, no captions, no watermark` **dentro do prompt
+  principal**, não só no campo de prompt negativo (esse modelo parece
+  ignorar o campo separado).
+- Se o Magnific tiver um controle de "motion strength"/"criatividade",
+  **diminua** — é o que está fazendo o modelo se afastar do frame inicial
+  tão rápido.
+- Descreva só o que já está literalmente na imagem-âncora, sem sugerir
+  qualquer ação além da cena atual (nada de "e depois ele começa a...").
