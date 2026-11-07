@@ -36,6 +36,14 @@ reencodado para eliminar artefato de timestamp na emenda). Duração final:
 segue a mesma política do `.gitignore` para `amaz-video/*.mp4` (binário
 grande, regenerável).
 
+> Este corte (v2, 38s) cobre só as Cenas 1-5. As Cenas 6-8 abaixo
+> (pintura, montagem final e estrada) ainda não foram geradas — ver
+> "Status de geração" logo abaixo. **Ordem completa planejada do vídeo
+> final (8 cenas):** 2 → 3 → 4 → 6 → 5 → 7 → 1 → 8, isto é: solda do
+> quadro → modelagem do tanque → lixamento → pintura → motor → montagem
+> final na bancada (peças pintadas/cromadas) → revelação do chassi na
+> oficina → moto rodando na estrada (encerramento).
+
 ## Cena 1 — Tracking shot pela oficina
 
 Cinematic, slow-motion tracking shot inside an authentic 1970s old school
@@ -104,6 +112,41 @@ frame, mechanical perfection.
   > chrome contrasting with the dark frame, mechanical perfection, slow
   > deliberate hand movement.
 
+## Cena 6 — Pintura (tanque e paralama)
+
+Close-up cinematic shot inside a dim paint booth of a vintage 1970s custom
+motorcycle shop. A painter wearing a respirator and coveralls applies
+smooth coats of deep matte black paint onto the peanut gas tank and bobber
+rear fender, both suspended on wire hooks under a single hanging work
+light. Fine paint mist drifts through the light beam, wet paint catching a
+subtle sheen. Gritty, dim garage atmosphere, cinematic depth of field,
+photorealistic, 8k.
+
+- Status: **prompt pronto, geração pendente** (sem créditos disponíveis).
+
+## Cena 7 — Montagem final na bancada (peças pintadas e cromadas)
+
+Wide cinematic shot of the motorcycle shop workbench, now covered with
+every finished component laid out in order: the matte black painted
+peanut tank and bobber fender, freshly chromed dual exhaust pipes, chrome
+ape-hanger handlebars, and the dense multi-spoke wire wheels polished to a
+mirror shine. A mechanic's hands begin fitting the painted tank onto the
+rigid frame, warm Edison bulb light glinting off the chrome. Gritty,
+smoke-tinted 1970s garage atmosphere, photorealistic, 8k.
+
+- Status: **prompt pronto, geração pendente** (sem créditos disponíveis).
+
+## Cena 8 — Encerramento: a moto rodando na estrada
+
+Wide cinematic tracking shot at golden hour: the finished matte black
+rigid chopper, high ape-hanger handlebars and chrome dual exhaust pipes,
+rides down an open two-lane rural road, dust and heat shimmer trailing
+behind the rear wire wheel. Low camera angle tracking alongside, long
+shadows, warm sunset light glinting off the chrome, cinematic lens flare,
+photorealistic, 8k.
+
+- Status: **prompt pronto, geração pendente** (sem créditos disponíveis).
+
 ## Problema conhecido — moto muda de formato entre cenas
 
 Cada cena foi gerada de forma independente (um prompt de texto por cena,
@@ -121,9 +164,18 @@ quadro/tanque/rodas idênticos do início ao fim. Candidata a referência:
 still da Cena 1 (`https://assets.morphix.pro/7vw439p4.png`), por ser a
 única vista completa do chassi montado.
 
+As cenas novas (6, 7 e 8) **ainda não foram geradas** — portanto devem
+nascer já usando essa referência fixa desde a primeira geração (não só
+corrigidas depois), para não repetir o mesmo problema. Ordem sugerida ao
+gerar com crédito disponível: gerar a imagem de referência canônica
+primeiro (ou confirmar a da Cena 1), depois gerar 2, 3, 4, 6, 5, 7, 8
+sempre passando o `assetId` da referência, e só então os vídeos de cada
+uma a partir do respectivo still.
+
 Status: conta Morphix caiu para o plano FREE com 1 crédito restante —
-insuficiente até para um único still. Retomar esta correção assim que
-houver créditos; não prosseguir com novas gerações até lá.
+insuficiente até para um único still. Retomar esta correção (cenas 2-5) e
+a geração das cenas 6-8 assim que houver créditos; não prosseguir com
+novas gerações até lá.
 
 ## Notas
 
