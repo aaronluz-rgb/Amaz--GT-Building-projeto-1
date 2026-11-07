@@ -104,6 +104,27 @@ frame, mechanical perfection.
   > chrome contrasting with the dark frame, mechanical perfection, slow
   > deliberate hand movement.
 
+## Problema conhecido — moto muda de formato entre cenas
+
+Cada cena foi gerada de forma independente (um prompt de texto por cena,
+sem nenhuma imagem de referência compartilhada), então o modelo de imagem
+reinterpretou o desenho da moto a cada geração: geometria do quadro,
+formato do tanque e padrão de raios das rodas **não são os mesmos** entre
+as cenas 1-5. Visível comparando, por exemplo, o quadro da Cena 2 (solda)
+com o chassi montado da Cena 1 (revelação) — ângulo de garfo, raio das
+rodas e proporção do quadro divergem.
+
+**Correção planejada (bloqueada por créditos):** regerar as cenas 2-5
+usando uma única imagem "canônica" da moto como referência fixa
+(`assetIds` no `generate_image`, não apenas prompt de texto), travando
+quadro/tanque/rodas idênticos do início ao fim. Candidata a referência:
+still da Cena 1 (`https://assets.morphix.pro/7vw439p4.png`), por ser a
+única vista completa do chassi montado.
+
+Status: conta Morphix caiu para o plano FREE com 1 crédito restante —
+insuficiente até para um único still. Retomar esta correção assim que
+houver créditos; não prosseguir com novas gerações até lá.
+
 ## Notas
 
 - Todos os stills foram gerados com `google/nano-banana-pro` (16:9, 4K).
