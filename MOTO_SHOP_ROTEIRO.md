@@ -12,6 +12,30 @@ para still + Google Veo 3.1 para o vídeo, semeado a partir do still).
 > quando houver créditos disponíveis, ou trocar para um modelo de vídeo mais
 > barato.
 
+## Ordem de montagem (corte final)
+
+A ordem de geração (Cena 1 → 5, abaixo) não é a ordem cronológica de
+construção — a Cena 1 mostra o chassi já praticamente pronto, o que não faz
+sentido como abertura. Corte final remontado na ordem correta de um
+processo de build, usando só ferramentas gratuitas/open source (sem gastar
+créditos Morphix):
+
+1. **Cena 2** — dobra de tubo e solda do quadro
+2. **Cena 3** — modelagem do tanque peanut
+3. **Cena 4** — lixamento do tanque/paralama
+4. **Cena 5** — montagem do motor Panhead (só tinha still; vídeo de
+   pan/zoom gerado localmente a partir do still com `ffmpeg` —
+   filtro `zoompan`, 6s, mesmo codec/resolução/fps das outras cenas)
+5. **Cena 1** — tracking shot do chassi pronto, como revelação final
+
+Processo: download dos 4 vídeos + still da cena 5 (`curl`), geração do
+clipe da cena 5 a partir do still (`ffmpeg zoompan`), e concatenação sem
+reencode de vídeo (`ffmpeg -f concat -c:v copy`, só o áudio foi
+reencodado para eliminar artefato de timestamp na emenda). Duração final:
+38s (8+8+8+6+8). Vídeo final de 60MB não versionado no repositório —
+segue a mesma política do `.gitignore` para `amaz-video/*.mp4` (binário
+grande, regenerável).
+
 ## Cena 1 — Tracking shot pela oficina
 
 Cinematic, slow-motion tracking shot inside an authentic 1970s old school
