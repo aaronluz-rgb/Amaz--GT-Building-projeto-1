@@ -1,0 +1,279 @@
+<title>Diagnóstico NODUM Travel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: relatório de leitura em coluna única (~72ch), tabelas largas rolam no próprio contêiner */
+:root{
+  --bg:#F4F7F6; --surface:#FFFFFF; --ink:#13211E; --ink2:#4A5B57; --line:#D6DFDC;
+  --accent:#0B6B5D; --bar:#2F8F7F; --bar-bg:#E3ECE9;
+  --bad:#B4431C; --good:#1F7A45; --warn:#8A6400;
+  --display:"Space Grotesk","Inter",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1716; --surface:#172220; --ink:#E8EFED; --ink2:#A3B3AF; --line:#2B3936;
+  --accent:#5CC4B2; --bar:#4FB3A2; --bar-bg:#24322F;
+  --bad:#F08A63; --good:#6FCB92; --warn:#E0B64A; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0F1716; --surface:#172220; --ink:#E8EFED; --ink2:#A3B3AF; --line:#2B3936;
+  --accent:#5CC4B2; --bar:#4FB3A2; --bar-bg:#24322F;
+  --bad:#F08A63; --good:#6FCB92; --warn:#E0B64A; color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+section{display:flex;flex-direction:column;gap:14px;min-width:0}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:clamp(1.7rem,4.5vw,2.4rem);font-weight:600}
+h2{font-size:1.35rem;font-weight:600;padding-top:20px;border-top:1px solid var(--line)}
+h3{font-size:1.02rem;font-weight:600}
+p,ul,ol{margin:0;max-width:72ch}
+ul,ol{padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+a{color:var(--accent)}
+.lede{font-size:1.08rem;color:var(--ink2)}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.kpi b{font-family:var(--display);font-size:1.9rem;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.86rem;color:var(--ink2);line-height:1.4}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);font-weight:600;white-space:nowrap}
+td.n,th.n{text-align:right;white-space:nowrap}
+.meter{display:flex;align-items:center;gap:8px;min-width:150px}
+.meter i{flex:1;height:8px;background:var(--bar-bg);border-radius:4px;overflow:hidden;display:block}
+.meter i u{display:block;height:100%;background:var(--bar);border-radius:0 4px 4px 0}
+.meter em{font-style:normal;width:3.2em;text-align:right}
+.tag{display:inline-block;font-size:.74rem;font-weight:600;padding:1px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.tag.good{color:var(--good)} .tag.bad{color:var(--bad)} .tag.warn{color:var(--warn)}
+.note{font-size:.86rem;color:var(--ink2)}
+.callout{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.steps{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:baseline}
+.steps dt{font-family:var(--display);font-weight:600;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+.steps dd{margin:0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+code{font-size:.88em;background:var(--bar-bg);padding:1px 5px;border-radius:4px}
+</style>
+
+<main>
+<header style="display:flex;flex-direction:column;gap:12px">
+  <span class="eyebrow">Apresentação do marketing · antes de qualquer anúncio · 13 nov 2026</span>
+  <h1>NODUM Travel: por que a visibilidade está baixa e como fazer o vídeo ser assistido até o fim</h1>
+  <p class="lede">Li as métricas reais de 40 postagens do Instagram (@nodumtravel) e 35 do TikTok (@nodum.travel), de 10 de outubro a 13 de novembro. O problema principal não é alcance. É que quase todo mundo sai nos 3 primeiros segundos, e as plataformas param de distribuir.</p>
+  <div class="kpis">
+    <div class="kpi"><b>77%</b><span>pulam o Reel antes de 3 segundos (média dos últimos 24 Reels)</span></div>
+    <div class="kpi"><b>5,9 s</b><span>tempo médio assistido, em vídeos de cerca de 45 s (≈13%)</span></div>
+    <div class="kpi"><b>0–4%</b><span>assistem até o fim no TikTok, em todos os vídeos</span></div>
+    <div class="kpi"><b>0</b><span>toques no link da bio do Instagram em 30 dias</span></div>
+    <div class="kpi"><b>9 · 11</b><span>seguidores no Instagram e no TikTok</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>Recomendação em uma frase</h2>
+  <p><strong>Não anunciar agora.</strong> Com 77% de pulo e zero cliques no link, anúncio só paga para mais gente sair no segundo 2. Primeiro acertar o formato (vídeo de 18 a 28 s, com o Aaron aparecendo e falando nos 3 primeiros segundos, um único tema: comida e preços reais do Brasil). Os critérios para liberar verba estão no fim desta página.</p>
+</section>
+
+<section>
+  <h2>Antes e agora</h2>
+  <p>A conta tem cinco semanas e duas fases bem diferentes. A mudança de 29 de outubro funcionou: a mediana de visualizações por Reel subiu cerca de 7 vezes. Mas estacionou em 100 a 270, que é o lote de teste que o Instagram mostra para quem não segue. Só um vídeo passou desse teto.</p>
+  <div class="scroll"><table>
+    <tr><th></th><th>Antes · 10 a 28 out</th><th>Agora · 29 out a 13 nov</th></tr>
+    <tr><td><strong>Formato</strong></td><td>Imagens e carrosséis com foto de IA, Reels institucionais ("planejamos sua viagem")</td><td>Reels com banco de imagens (Adobe Stock), voz de IA, quiz e listas</td></tr>
+    <tr><td><strong>Reels publicados</strong></td><td>7 Reels + 9 posts de imagem</td><td>24 Reels + 1 carrossel</td></tr>
+    <tr><td><strong>Views por Reel (mediana)</strong></td><td class="n" style="text-align:left">19</td><td>138</td></tr>
+    <tr><td><strong>Views por post de imagem</strong></td><td>5 a 18</td><td>8 (o único carrossel)</td></tr>
+    <tr><td><strong>Melhor resultado</strong></td><td>112 (Iguaçu em 3 dias)</td><td>1.203 (5 comidas que confundem estrangeiros)</td></tr>
+    <tr><td><strong>Salvamentos + envios</strong></td><td>1</td><td>9 em 4.272 views (0,2%)</td></tr>
+    <tr><td><strong>Tema</strong></td><td>Só Brasil</td><td>Brasil, Itália, Portugal, Dubai, Peru, Argentina, baladas, vinhos</td></tr>
+  </table></div>
+  <p class="note">Imagem estática e carrossel não estão entregando nada para esta conta (5 a 18 views). Manter só como material de apoio no perfil, não como aposta de crescimento.</p>
+</section>
+
+<section>
+  <h2>O que segura a pessoa e o que não segura</h2>
+  <p>A taxa de pulo nos 3 primeiros segundos prevê quase tudo. Todos os Reels com pulo abaixo de 67% passaram de 150 views. Nenhum com pulo acima de 85% decolou.</p>
+  <div class="scroll"><table>
+    <tr><th>Tipo de vídeo (fase atual, Instagram)</th><th class="n">Reels</th><th>Pulo em 3 s (média)</th><th class="n">Tempo médio</th><th class="n">Views (mediana)</th><th>Leitura</th></tr>
+    <tr><td>Quiz de comida e bebida do Brasil</td><td class="n">5</td><td><div class="meter"><i><u style="width:62%"></u></i><em>62%</em></div></td><td class="n">9,1 s</td><td class="n">205</td><td><span class="tag good">Manter</span></td></tr>
+    <tr><td>Preço ou lista visual de destino ($10 no Rio, Buenos Aires, Dubai, Eurotrip)</td><td class="n">5</td><td><div class="meter"><i><u style="width:69%"></u></i><em>69%</em></div></td><td class="n">6,3 s</td><td class="n">208</td><td><span class="tag good">Manter, só Brasil</span></td></tr>
+    <tr><td>Vlog com a voz real do Aaron</td><td class="n">1</td><td><div class="meter"><i><u style="width:74%"></u></i><em>74%</em></div></td><td class="n">7,6 s</td><td class="n">93</td><td><span class="tag warn">Testar mais</span></td></tr>
+    <tr><td>Roteiro "salve para a viagem" (Minas road trip, Itália, Portugal, dia no Rio)</td><td class="n">4</td><td><div class="meter"><i><u style="width:87%"></u></i><em>87%</em></div></td><td class="n">3,3 s</td><td class="n">138</td><td><span class="tag bad">Mudar a abertura</span></td></tr>
+    <tr><td>Passagens, afiliados e institucional (calendário de tarifas, Trip Check, site novo)</td><td class="n">6</td><td><div class="meter"><i><u style="width:90%"></u></i><em>90%</em></div></td><td class="n">4,0 s</td><td class="n">73</td><td><span class="tag bad">Parar como Reel frio</span></td></tr>
+  </table></div>
+  <h3>Três comparações que explicam o resultado</h3>
+  <ul>
+    <li><strong>Mesmo assunto, aberturas diferentes.</strong> "A melhor comida do Brasil não está no Rio" teve 64% de pulo. "Um road trip gastronômico por Minas Gerais", publicado no mesmo dia, teve 89,5%. A primeira frase contraria uma expectativa; a segunda anuncia um roteiro.</li>
+    <li><strong>Preço exato na abertura funciona.</strong> "$10 numa praia do Rio" tem 24 s e foi o vídeo com melhor retenção proporcional: 31% do vídeo assistido no TikTok, contra 5 a 15% dos demais. É também o formato que mais cresce em viagem hoje.</li>
+    <li><strong>A voz real gerou a maior taxa de curtidas.</strong> O vlog de 7 de novembro teve 4,3% de curtidas por view, contra 1,2% do vídeo de 1.203 views. É um único vídeo, então é um sinal, não uma prova.</li>
+  </ul>
+  <h3>Todos os Reels da fase atual, do melhor ao pior em retenção inicial</h3>
+  <div class="scroll"><table>
+    <tr><th>Data</th><th>Reel</th><th>Pulo em 3 s</th><th class="n">Tempo médio</th><th class="n">Views</th></tr>
+    <tr><td>01/11</td><td>5 comidas brasileiras que confundem estrangeiros</td><td><div class="meter"><i><u style="width:52.4%"></u></i><em>52%</em></div></td><td class="n">14,9 s</td><td class="n">1.203</td></tr>
+    <tr><td>11/11</td><td>6 coisas imperdíveis em Buenos Aires</td><td><div class="meter"><i><u style="width:58.6%"></u></i><em>59%</em></div></td><td class="n">7,5 s</td><td class="n">269</td></tr>
+    <tr><td>02/11</td><td>Time doce ou time salgado? (parte 2)</td><td><div class="meter"><i><u style="width:60.4%"></u></i><em>60%</em></div></td><td class="n">5,8 s</td><td class="n">205</td></tr>
+    <tr><td>03/11</td><td>Como Dubai foi construída</td><td><div class="meter"><i><u style="width:60.8%"></u></i><em>61%</em></div></td><td class="n">8,4 s</td><td class="n">197</td></tr>
+    <tr><td>08/11</td><td>A melhor comida do Brasil não está no Rio</td><td><div class="meter"><i><u style="width:64%"></u></i><em>64%</em></div></td><td class="n">6,5 s</td><td class="n">154</td></tr>
+    <tr><td>07/11</td><td>5 comidas e onde comer cada uma</td><td><div class="meter"><i><u style="width:66%"></u></i><em>66%</em></div></td><td class="n">10,2 s</td><td class="n">211</td></tr>
+    <tr><td>03/11</td><td>POV: você finalmente reservou a Eurotrip</td><td><div class="meter"><i><u style="width:66.3%"></u></i><em>66%</em></div></td><td class="n">6,9 s</td><td class="n">208</td></tr>
+    <tr><td>07/11</td><td>5 bebidas brasileiras que confundem estrangeiros</td><td><div class="meter"><i><u style="width:69.1%"></u></i><em>69%</em></div></td><td class="n">7,9 s</td><td class="n">118</td></tr>
+    <tr><td>07/11</td><td>10 viagens que não esqueço (vlog, voz real)</td><td><div class="meter"><i><u style="width:74.1%"></u></i><em>74%</em></div></td><td class="n">7,6 s</td><td class="n">93</td></tr>
+    <tr><td>12/11</td><td>$10 numa praia do Rio</td><td><div class="meter"><i><u style="width:75.2%"></u></i><em>75%</em></div></td><td class="n">5,6 s</td><td class="n">267</td></tr>
+    <tr><td>04/11</td><td>Os melhores vinhedos do mundo</td><td><div class="meter"><i><u style="width:76.9%"></u></i><em>77%</em></div></td><td class="n">5,6 s</td><td class="n">16</td></tr>
+    <tr><td>08/11</td><td>Coma como um carioca: um dia no Rio</td><td><div class="meter"><i><u style="width:78.6%"></u></i><em>79%</em></div></td><td class="n">4,1 s</td><td class="n">124</td></tr>
+    <tr><td>06/11</td><td>5 comidas sul-americanas que confundem</td><td><div class="meter"><i><u style="width:79.2%"></u></i><em>79%</em></div></td><td class="n">7,7 s</td><td class="n">123</td></tr>
+    <tr><td>03/11</td><td>Adivinhe onde no Brasil (drone)</td><td><div class="meter"><i><u style="width:81.6%"></u></i><em>82%</em></div></td><td class="n">3,1 s</td><td class="n">169</td></tr>
+    <tr><td>13/11</td><td>A IA planeja sua viagem. Ela vê os erros?</td><td><div class="meter"><i><u style="width:83.7%"></u></i><em>84%</em></div></td><td class="n">4,6 s</td><td class="n">49</td></tr>
+    <tr><td>04/11</td><td>A volta ao mundo em 12 baladas</td><td><div class="meter"><i><u style="width:85.7%"></u></i><em>86%</em></div></td><td class="n">7,2 s</td><td class="n">29</td></tr>
+    <tr><td>31/10</td><td>A Nodum é uma empresa de conexão</td><td><div class="meter"><i><u style="width:88.1%"></u></i><em>88%</em></div></td><td class="n">5,2 s</td><td class="n">123</td></tr>
+    <tr><td>29/10</td><td>Pare de reservar Itália ida e volta</td><td><div class="meter"><i><u style="width:88.2%"></u></i><em>88%</em></div></td><td class="n">4,7 s</td><td class="n">154</td></tr>
+    <tr><td>09/11</td><td>A IA planejou meu Peru: ache os 3 erros</td><td><div class="meter"><i><u style="width:89.4%"></u></i><em>89%</em></div></td><td class="n">2,2 s</td><td class="n">96</td></tr>
+    <tr><td>08/11</td><td>Road trip gastronômico por Minas</td><td><div class="meter"><i><u style="width:89.5%"></u></i><em>90%</em></div></td><td class="n">2,3 s</td><td class="n">110</td></tr>
+    <tr><td>30/10</td><td>POV: chegou por Lisboa, saiu pelo Porto</td><td><div class="meter"><i><u style="width:89.7%"></u></i><em>90%</em></div></td><td class="n">2,2 s</td><td class="n">151</td></tr>
+    <tr><td>29/10</td><td>Pare de checar o mesmo voo todo dia</td><td><div class="meter"><i><u style="width:90.5%"></u></i><em>91%</em></div></td><td class="n">5,8 s</td><td class="n">26</td></tr>
+    <tr><td>06/11</td><td>Reconstruímos o nodumtravel.com</td><td><div class="meter"><i><u style="width:94.7%"></u></i><em>95%</em></div></td><td class="n">4,0 s</td><td class="n">22</td></tr>
+    <tr><td>31/10</td><td>Munique → Lisboa a partir de $213</td><td><div class="meter"><i><u style="width:95.2%"></u></i><em>95%</em></div></td><td class="n">2,3 s</td><td class="n">155</td></tr>
+  </table></div>
+  <p class="note">Fonte: Instagram Insights via Windsor.ai e Metricool, lidos em 13/11/2026. No TikTok o padrão é o mesmo: os cinco vídeos mais vistos (313 a 734 views) são todos de comida, bebida ou preço no Brasil.</p>
+</section>
+
+<section>
+  <h2>Onde a conta perde visibilidade</h2>
+  <ol>
+    <li><strong>A abertura não dá motivo para ficar.</strong> Vídeos de banco de imagens com voz sintética parecem anúncio no primeiro quadro. O chefe do Instagram disse este ano que conteúdo de IA não é punido por ser IA, mas admitiu que ele provavelmente ranqueia pior, porque as pessoas reagem pior a ele.</li>
+    <li><strong>Vídeos longos demais para a retenção atual.</strong> A média é 45 s e as pessoas ficam 6 s. Ninguém chega no fim, e conclusão é um dos sinais mais fortes.</li>
+    <li><strong>Tema espalhado.</strong> A bio promete "comida e segredos do Brasil", mas em duas semanas saíram Itália, Portugal, Dubai, Peru, baladas e vinhedos. O algoritmo não consegue decidir para quem mostrar, e quem chega ao perfil não entende o que vai receber.</li>
+    <li><strong>Quase ninguém envia ou salva.</strong> 9 salvamentos e envios em 4.272 views. Envio por DM é um dos sinais que o Instagram nomeia publicamente para alcançar não seguidores.</li>
+    <li><strong>Legenda sobrecarregada.</strong> Quatro ou cinco chamadas na mesma legenda (comente, salve, marque, link na bio, promoção do fim de semana), avisos longos, <code>@travelpayouts</code> em todo post, trechos em alemão e português misturados ao inglês, hashtags sem o # (<code>travelplanning</code>, <code>moqueca</code>) e, no post de 13/11, asteriscos de formatação aparecendo no texto.</li>
+    <li><strong>TikTok sem texto pesquisável.</strong> Vários vídeos saíram só com <code>#creatorsearchinsights</code> ou <code>#milestone</code>. A bio do TikTok é apenas um link.</li>
+    <li><strong>Cadência irregular.</strong> Três Reels no mesmo dia em 7 e 8 de novembro, depois dias sem nada. A bio diz "parte nova todo domingo", o que o calendário não cumpre.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Assuntos de viagem em alta, e o que cada um significa para a NODUM</h2>
+  <div class="scroll"><table>
+    <tr><th>Assunto</th><th>O que as fontes mostram</th><th>Como usar</th></tr>
+    <tr><td><strong>Preço exato na abertura</strong></td><td>Em um levantamento de novembro de 2026 sobre vídeos de viagem, o gancho com valor em dólar logo no início foi o de melhor desempenho (amostra pequena). Detalhamento de custos é o formato mais salvo.</td><td>Série "Brasil com $10": praia do Rio já provou. Repetir em feira de São Paulo, boteco, Salvador, Foz.</td></tr>
+    <tr><td><strong>Comida local em menos de 60 s</strong></td><td>Citada entre os formatos de maior engajamento em viagem em 2026.</td><td>É o que já funciona na conta. Continuar "confunde todo estrangeiro", com 3 itens em vez de 5.</td></tr>
+    <tr><td><strong>Fora do roteiro óbvio</strong></td><td>Booking.com (28 mil viajantes, 32 países): a tendência de 2027 é "sair do script". Listas de Expedia, Skyscanner e Priceline puxam destinos menos cheios; Punta del Este aparece na da Expedia.</td><td>Série "Brasil além do Rio": Minas, Maragogi, Pipa, Lençóis, Bonito.</td></tr>
+    <tr><td><strong>Brasil em recorde</strong></td><td>Mais de 7 milhões de estrangeiros de janeiro a setembro de 2026 e US$ 8,3 bi em gastos. Argentina e EUA lideram. Nordeste cresce mais (RN e Alagoas citados com as maiores altas).</td><td>Prova de procura para o serviço. Nordeste é pauta com demanda e pouca concorrência em inglês.</td></tr>
+    <tr><td><strong>"O que eu queria saber antes"</strong></td><td>Formato de alta intenção: quem assiste já está planejando.</td><td>Segurança por bairro, Pix, visto eletrônico para americanos, chip, gorjeta. É onde os 25 anos do Aaron valem mais.</td></tr>
+    <tr><td><strong>Viagem planejada por IA</strong></td><td>Tema presente nos relatórios de 2027 e é exatamente o produto Trip Check.</td><td>A ideia é boa, mas os três vídeos sobre isso perderam 84 a 95% na abertura. Refazer com o Aaron na tela apontando o erro no roteiro.</td></tr>
+    <tr><td><strong>Carnaval 2027 e Réveillon</strong></td><td>Desfiles de 5 a 13 de fevereiro (datas da própria postagem da NODUM). Faltam 12 semanas: é a janela de reserva.</td><td>Contagem regressiva semanal: onde ficar, quanto custa, o que reservar primeiro.</td></tr>
+    <tr><td><strong>Viagens curtas</strong></td><td>Expedia chama de "trip snacking": escapadas de uma ou duas noites.</td><td>"48 horas em…" para Foz, Paraty, Ouro Preto.</td></tr>
+  </table></div>
+  <p class="note">Boa parte das fontes sobre formatos é de blogs de marketing; trato como direção, não como número exato. Os dados da própria conta apontam para o mesmo lado.</p>
+</section>
+
+<section>
+  <h2>A melhor forma de postar</h2>
+  <div class="callout">
+    <h3>Roteiro de um Reel de 18 a 28 segundos</h3>
+    <dl class="steps">
+      <dt>0–1 s</dt><dd>Movimento real na tela (mão pagando, comida chegando, Aaron andando) e texto de até 7 palavras com número, preço ou contradição. A fala começa no primeiro quadro, sem vinheta nem logo.</dd>
+      <dt>1–3 s</dt><dd>A promessa que só se resolve no fim: "a terceira divide dois estados", "sobrou troco?".</dd>
+      <dt>3–20 s</dt><dd>Três itens, não cinco. Corte a cada 1,5 a 2,5 s. Legenda palavra por palavra na tela. Cada item abre com imagem nova.</dd>
+      <dt>Final</dt><dd>A resposta prometida nos últimos 3 s, e o último quadro emenda no primeiro para o vídeo repetir.</dd>
+      <dt>Chamada</dt><dd>Uma só por vídeo. Alternar entre "manda para quem iria com você" (gera envio) e "comenta FOOD" (gera conversa e DM).</dd>
+    </dl>
+  </div>
+  <div class="two">
+    <div class="callout">
+      <h3>Quanto de IA</h3>
+      <p>A sua mensagem chegou cortada em "e sim o quanto…". Minha proposta, até você completar: <strong>cerca de 70% real e 30% IA</strong>.</p>
+      <ul>
+        <li><strong>Real:</strong> rosto e voz do Aaron na abertura e no fecho, imagens de celular, gravação de tela do roteiro.</li>
+        <li><strong>IA e automação:</strong> legendas, tradução, pesquisa, corte de silêncios, variações de título.</li>
+        <li><strong>Banco de imagens:</strong> só como cobertura no meio, nunca no primeiro quadro.</li>
+        <li><strong>Voz:</strong> testar o Aaron falando inglês com sotaque contra português com legenda em inglês. Sotaque de brasileiro falando do Brasil é credencial.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <h3>Rotina</h3>
+      <ul>
+        <li>Um Reel por dia, cinco por semana, no mesmo horário. Nunca três no mesmo dia.</li>
+        <li>Um idioma por vídeo (inglês). Sem linhas em alemão ou português na legenda.</li>
+        <li>Legenda: primeira linha com a frase que alguém pesquisaria ("what to eat in Rio"), 3 a 5 hashtags com #, aviso de IA pelo rótulo da plataforma.</li>
+        <li>Usar <strong>Trial Reels</strong> (o Metricool já agenda) para testar duas aberturas do mesmo vídeo só com não seguidores.</li>
+        <li>Responder todo comentário na primeira hora.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ferramentas open source no GitHub</h2>
+  <p>Selecionei as que servem a um fluxo com gravação real. Deixei de fora, de propósito, os geradores de vídeo 100% automáticos (MoneyPrinterTurbo, ShortGPT): produzem exatamente o tipo de vídeo que está sendo pulado.</p>
+  <div class="scroll"><table>
+    <tr><th>Etapa</th><th>Repositório</th><th>Para que serve aqui</th></tr>
+    <tr><td>Estudo</td><td><code>yt-dlp/yt-dlp</code></td><td>Baixar vídeos de referência de outros perfis de viagem para estudar os 3 primeiros segundos quadro a quadro.</td></tr>
+    <tr><td>Estudo</td><td><code>instaloader/instaloader</code></td><td>Extrair legendas e datas de perfis públicos concorrentes.</td></tr>
+    <tr><td>Estudo</td><td><code>Breakthrough/PySceneDetect</code></td><td>Medir o ritmo de corte dos vídeos que viralizam e comparar com os da NODUM.</td></tr>
+    <tr><td>Gravação</td><td><code>obsproject/obs-studio</code></td><td>Gravar a tela do roteiro com a câmera do Aaron no canto (formato Trip Check).</td></tr>
+    <tr><td>Edição</td><td><code>OpenCut-app/OpenCut</code></td><td>Editor no navegador, alternativa livre ao CapCut (licença MIT).</td></tr>
+    <tr><td>Edição</td><td><code>WyattBlue/auto-editor</code></td><td>Corta silêncios da fala automaticamente; encurta o vídeo sem reeditar.</td></tr>
+    <tr><td>Edição</td><td><code>mifi/lossless-cut</code></td><td>Recortes rápidos sem recomprimir.</td></tr>
+    <tr><td>Edição</td><td><code>FFmpeg/FFmpeg</code> · <code>KDE/kdenlive</code></td><td>Base de conversão e um editor de linha do tempo completo.</td></tr>
+    <tr><td>Legenda</td><td><code>m-bain/whisperX</code> · <code>ggml-org/whisper.cpp</code></td><td>Transcrição com tempo por palavra para a legenda animada.</td></tr>
+    <tr><td>Gráficos</td><td><code>heygen-com/hyperframes</code></td><td>Já usado neste repositório. Bom para textos, preços e mapas animados por cima da gravação real.</td></tr>
+    <tr><td>Gráficos</td><td><code>remotion-dev/remotion</code></td><td>Vídeo por código em React. Código aberto, mas a licença cobra de empresas maiores; conferir antes.</td></tr>
+    <tr><td>Voz</td><td><code>kyutai-labs/pocket-tts</code></td><td>Já usado na dublagem. Manter só para o miolo, não para a abertura.</td></tr>
+    <tr><td>Agenda</td><td><code>gitroomhq/postiz-app</code> · <code>inovector/mixpost</code></td><td>Agendadores livres, caso queiram sair do Metricool.</td></tr>
+    <tr><td>Automação</td><td><code>n8n-io/n8n</code></td><td>Vocês já têm uma instância. Serve para puxar as métricas toda semana e avisar quando um Reel passar do critério de anúncio.</td></tr>
+  </table></div>
+  <p class="note">Não consegui confirmar número de estrelas nem licença atual de cada repositório nesta sessão; vale checar a licença antes de uso comercial.</p>
+</section>
+
+<section>
+  <h2>Próximos 14 dias e quando liberar anúncio</h2>
+  <ol>
+    <li><strong>Arrumar a casa (1 dia).</strong> Bio do TikTok com promessa clara, legendas limpas, um destino para o link da bio (o mapa de comida gratuito), fixar os 3 melhores Reels de comida.</li>
+    <li><strong>Gravar em lote (1 tarde).</strong> O Aaron grava 10 aberturas de 3 s com o celular, em inglês e em português.</li>
+    <li><strong>Publicar 10 Reels em 14 dias.</strong> Quatro de preço, quatro de comida, dois "o que eu queria saber antes". Todos sobre o Brasil, todos com menos de 28 s.</li>
+    <li><strong>Medir toda segunda.</strong> Pulo em 3 s, tempo médio dividido pela duração, envios, toques no link.</li>
+  </ol>
+  <div class="callout">
+    <h3>Critérios para formar o primeiro anúncio</h3>
+    <p>Impulsionar somente um Reel que já tenha provado, sem verba:</p>
+    <ul>
+      <li>pulo em 3 s de <strong>55% ou menos</strong> (hoje a média é 77%; só um vídeo chegou lá);</li>
+      <li>tempo médio de <strong>pelo menos 40% da duração</strong> (hoje ≈13%);</li>
+      <li>envios + salvamentos de <strong>1% das views</strong> (hoje 0,2%);</li>
+      <li>e o link da bio registrando toques.</li>
+    </ul>
+    <p>Quando um vídeo bater os três primeiros, ele vira o anúncio. Não se cria peça nova para anunciar.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Limites desta análise</h2>
+  <ul>
+    <li><strong>Não assisti aos vídeos.</strong> O download dos arquivos foi bloqueado pela rede deste ambiente. As conclusões sobre a abertura vêm das métricas e das legendas, não da imagem. Se você enviar 3 ou 4 arquivos, reviso quadro a quadro.</li>
+    <li>A conta tem cinco semanas e amostras pequenas (várias categorias têm 4 a 6 vídeos). O vídeo de 1.203 views é um ponto fora da curva.</li>
+    <li>O Windsor.ai (plano de teste) só entrega 30 dias; os posts de 10 a 14 de outubro vieram do Metricool, com menos métricas.</li>
+    <li>Não há dados de país ou idade do público: com 9 e 11 seguidores as plataformas não liberam demografia.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Fontes externas</h2>
+  <ul class="note">
+    <li><a href="https://news.booking.com/bookingcom-2027-travel-predictions-reveal-the-ultimate-travel-flex/">Booking.com: previsões de viagem para 2027</a></li>
+    <li><a href="https://www.expedia.com/newsroom/where-to-travel-in-2027-expedias-destinations-of-the-year-reveal-the-fast-growing-spots-on-travelers-radar/">Expedia: destinos do ano 2027</a></li>
+    <li><a href="https://www.timeout.com/usa/news/the-top-travel-destinations-for-2027-is-this-floridian-beach-according-to-skyscanner-101526">Time Out: destinos 2027 segundo a Skyscanner</a></li>
+    <li><a href="https://www.priceline.com/travel/travel-trends-2027">Priceline: tendências de viagem 2027</a></li>
+    <li><a href="https://johnnyjet.com/2027-travel-trends-expedia-booking-com/">Johnny Jet: tendências 2027 de Expedia e Booking.com</a></li>
+    <li><a href="https://www.travelandtourworld.com/news/article/jkkmt2vos1ws/">Travel And Tour World: receita do turismo no Brasil, jan–set 2026</a></li>
+    <li><a href="https://energialimpa.live/en/brazil-surpasses-seven-million-foreign-tourists-in-2026/">Brasil passa de 7 milhões de turistas estrangeiros em 2026</a></li>
+    <li><a href="https://www.travelandtourworld.com/news/article/atuctg8v2fiv/">Travel And Tour World: novas rotas e crescimento do Nordeste</a></li>
+    <li><a href="https://tryvolume.app/working/travel">Volume: ganchos e formatos de viagem em alta, novembro de 2026</a></li>
+    <li><a href="https://viryze.com/blog/tiktok-travel-trends-2026">Viryze: tendências de viagem no TikTok em 2026</a></li>
+    <li><a href="https://www.dataslayer.ai/blog/instagram-algorithm-2025-complete-guide-for-marketers">Dataslayer: sinais de ranqueamento confirmados por Mosseri</a></li>
+    <li><a href="https://explainx.ai/blog/adam-mosseri-ai-negativity-going-to-get-worse-instagram-slop-labels-ranking-what-he-said-2026">ExplainX: o que Mosseri disse sobre conteúdo de IA e ranqueamento</a></li>
+    <li><a href="https://github.com/OpenCut-app/OpenCut">OpenCut no GitHub</a></li>
+  </ul>
+</section>
+</main>
